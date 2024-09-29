@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';  // Importa RouterModule para usar router-outlet
 import { ListaServicesComponent } from './lista-services/lista-services.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ListaServicesComponent],
+  imports: [CommonModule, RouterModule, ListaServicesComponent],  // Asegúrate de que RouterModule está en los imports
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

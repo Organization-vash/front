@@ -1,1 +1,17 @@
-<h2>Lista servicios</h2>
+<h2>Lista de Servicios</h2>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let service of services">
+      <td>{{ service.name }}</td>
+      <td>{{ service.type }}</td>
+      <td>{{ service.description }}</td>
+    </tr>
+  </tbody>
+</table>

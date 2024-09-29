@@ -11,5 +11,5 @@ import { ListaServicesComponent } from './lista-services/lista-services.componen
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'gestion-servicio-frontend';
+  title = 'Gestion de Servicio';
 }

@@ -14,4 +14,8 @@ export class ServiceService {
   obtenerListaDeServicios(): Observable<Service[]> {
     return this.httpClient.get<Service[]>(`${this.baseURL}`);
   }
+
+  crearServicio(service:Service) : Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}`, service);
+  }
 }

@@ -25,17 +25,21 @@ export class ListaServicesComponent implements OnInit {
   actualizarService(id: number){
     this.router.navigate(["actualizar-service", id]);  // Navegación
   }
-
-  eliminarService(id: number): void {
-    this.serviceService.eliminarServicio(id).subscribe(dato => {
-      console.log(dato);
-      this.obtenerService();  // Corregir el nombre del método
-    });
-  }
-
+  
   private obtenerService(): void {
     this.serviceService.obtenerListaDeServicios().subscribe(dato => {
       this.services = dato;
     });
+  }
+
+  eliminarService(id: number): void {
+    this.serviceService.eliminarServicio(id).subscribe(dato => {
+      console.log(dato);
+      this.obtenerService();
+    });
+  }
+
+  detalleService(id: number) {
+    this.router.navigate(['detalle-service', id]);
   }
 }

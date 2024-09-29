@@ -5,6 +5,7 @@
       <th>Name</th>
       <th>Type</th>
       <th>Description</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
       <td>
         <button (click) = "actualizarService(service.id)" class = "btn btn-info" style="margin-left : 10px">Modificar</button>
         <button (click) = "eliminarService(service.id)" class = "btn btn-danger" style="margin-left : 10px">Eliminar</button>
+        <button (click)= "detalleService(service.id)" class="btn btn-primary" style="margin-left : 10px;">Detalles</button>
       </td>
     </tr>
   </tbody>

@@ -1,0 +1,71 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.header {
+  width: 100%;
+  background-color: #1e3fa2;
+  padding: 10px 0;
+}
+
+.entel-logo {
+  max-width: 150px;
+  margin-left: 20px;
+}
+
+.login-box {
+  text-align: center;
+  width: 300px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-group-prepend .input-group-text {
+  background-color: white;
+  border-right: none;
+}
+
+.input-group-text i {
+  color: #808080;
+}
+
+.form-control {
+  border-radius: 0;
+  border-left: none;
+}
+
+.btn-submit {
+  background-color: #f58220;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.footer-bar {
+  width: 100%;
+  height: 50px;
+  background-color: #f58220;
+}

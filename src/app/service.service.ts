@@ -18,4 +18,16 @@ export class ServiceService {
   crearServicio(service:Service) : Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`, service);
   }
+
+  actualizarServicio(id: number, service: Service): Observable<Object> {
+    return this.httpClient.put(`${this.baseURL}/${id}`, service);
+  }
+
+  obtenerServicioPorId(id: number): Observable<Service> {
+    return this.httpClient.get<Service>(`${this.baseURL}/${id}`);
+  }
+
+  eliminarServicio(id:number):Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
 }

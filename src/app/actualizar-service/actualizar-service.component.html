@@ -1,0 +1,33 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Registro de Servicio</h3>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Nombre : </label>
+            <input type = "text"
+            class="form-control"
+            id = "name"
+            [(ngModel)]="service.name"
+            name = "name"
+            >
+        </div>
+        <div class="form-group">
+            <label>Tipo : </label>
+            <input type = "text"
+            class="form-control"
+            id = "type"
+            [(ngModel)]="service.type"
+            name = "type"
+            >
+        </div>
+        <div class="form-group">
+            <label>Descripcion : </label>
+            <input type = "text"
+            class="form-control"
+            id = "description"
+            [(ngModel)]="service.description"
+            name = "description"
+            >
+        </div>
+        <button class="btn btn-success">Guardar</button>
+    </form>
+</div>

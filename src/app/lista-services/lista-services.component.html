@@ -12,6 +12,10 @@
       <td>{{ service.name }}</td>
       <td>{{ service.type }}</td>
       <td>{{ service.description }}</td>
+      <td>
+        <button (click) = "actualizarService(service.id)" class = "btn btn-info" style="margin-left : 10px">Modificar</button>
+        <button (click) = "eliminarService(service.id)" class = "btn btn-danger" style="margin-left : 10px">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>

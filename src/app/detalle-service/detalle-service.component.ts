@@ -22,7 +22,7 @@ export class DetalleServiceComponent {
     this.service = new Service();
     this.serviceServicie.obtenerServicioPorId(this.id).subscribe(dato => {
       this.service = dato;
-      Swal.fire(`Detalles del empleado ${this.service.name}`);
+      Swal.fire(`Detalles del servicio ${this.service.name}`);
     });
   }
 }

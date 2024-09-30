@@ -1,15 +1,26 @@
-<h3>Detalles del Servcio</h3>
-<div>
-  <div>
-    <label><b>ID : </b> {{ service.id }}</label>
+<div class="detalle-servicio">
+    <!-- Título de la sección -->
+    <h2 class="detalle-titulo">Detalles del Servicio</h2>
+  
+    <!-- Detalles del servicio -->
+    <div class="detalle-item">
+      <span class="detalle-label">ID:</span>
+      <span class="detalle-valor">{{ service.id }}</span>
+    </div>
+  
+    <div class="detalle-item">
+      <span class="detalle-label">Nombre:</span>
+      <span class="detalle-valor">{{ service.name }}</span>
+    </div>
+  
+    <div class="detalle-item">
+      <span class="detalle-label">Tipo:</span>
+      <span class="detalle-valor">{{ service.type }}</span>
+    </div>
+  
+    <div class="detalle-item">
+      <span class="detalle-label">Descripción:</span>
+      <span class="detalle-valor">{{ service.description }}</span>
+    </div>
   </div>
-  <div>
-    <label><b>Nombre : </b> {{ service.name }}</label>
-  </div>
-  <div>
-    <label><b>Tipo : </b> {{ service.type }}</label>
-  </div>
-  <div>
-    <label><b>Descripcion : </b> {{ service.description }}</label>
-  </div>
-</div>
+  

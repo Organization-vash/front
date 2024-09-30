@@ -1,33 +1,83 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Registro de Servicio</h3>
-    <form (ngSubmit)="onSubmit()">
+    <!-- Encabezado del formulario con fondo azul Entel -->
+    <div class="form-header">
+      <h3>SERVICIO</h3>
+    </div>
+    
+    <!-- Contenedor del formulario con bordes personalizados -->
+    <div class="form-container">
+      <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
+    
+        <!-- Campo Nombre -->
         <div class="form-group">
-            <label>Nombre : </label>
-            <input type = "text"
-            class="form-control"
-            id = "name"
-            [(ngModel)]="service.name"
-            name = "name"
-            >
+          <label>Nombre:</label>
+          <input type="text" class="form-control"
+                 id="name"
+                 [(ngModel)]="service.name"
+                 name="name"
+                 required
+                 minlength="4"
+                 maxlength="20"
+                 placeholder="Digite nombre del servicio"
+                 #name="ngModel"
+                 pattern="^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$">
+          
+          <!-- Mensajes de Error -->
+          <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors?.['required']">Digite nombre del servicio por favor</div>
+            <div *ngIf="name.errors?.['minlength']">El nombre debe tener como mínimo 4 caracteres</div>
+            <div *ngIf="name.errors?.['maxlength']">El nombre debe tener como máximo 20 caracteres</div>
+            <div *ngIf="name.errors?.['pattern']">El nombre solo debe contener letras y espacios</div>
+          </div>
         </div>
+    
+        <!-- Campo Tipo -->
         <div class="form-group">
-            <label>Tipo : </label>
-            <input type = "text"
-            class="form-control"
-            id = "type"
-            [(ngModel)]="service.type"
-            name = "type"
-            >
+          <label>Tipo:</label>
+          <input type="text" class="form-control"
+                 id="type"
+                 [(ngModel)]="service.type"
+                 name="type"
+                 required
+                 minlength="5"
+                 maxlength="10"
+                 placeholder="Digite tipo del servicio"
+                 #type="ngModel"
+                 pattern="^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$">
+    
+          <!-- Mensajes de Error -->
+          <div class="alert alert-danger" *ngIf="type.invalid && (type.dirty || type.touched)">
+            <div *ngIf="type.errors?.['required']">Digite tipo del servicio por favor</div>
+            <div *ngIf="type.errors?.['minlength']">El tipo debe tener como mínimo 5 caracteres</div>
+            <div *ngIf="type.errors?.['maxlength']">El tipo debe tener como máximo 10 caracteres</div>
+            <div *ngIf="type.errors?.['pattern']">El tipo solo debe contener letras y espacios</div>
+          </div>
         </div>
+    
+        <!-- Campo Descripción -->
         <div class="form-group">
-            <label>Descripcion : </label>
-            <input type = "text"
-            class="form-control"
-            id = "description"
-            [(ngModel)]="service.description"
-            name = "description"
-            >
+          <label>Descripción:</label>
+          <textarea class="form-control"
+                    id="description"
+                    [(ngModel)]="service.description"
+                    name="description"
+                    required
+                    minlength="10"
+                    maxlength="500"
+                    placeholder="Digite descripción del servicio"
+                    #description="ngModel"
+                    pattern="^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$"></textarea>
+    
+          <!-- Mensajes de Error -->
+          <div class="alert alert-danger" *ngIf="description.invalid && (description.dirty || description.touched)">
+            <div *ngIf="description.errors?.['required']">Digite descripción del servicio por favor</div>
+            <div *ngIf="description.errors?.['minlength']">La descripción debe tener como mínimo 10 caracteres</div>
+            <div *ngIf="description.errors?.['maxlength']">La descripción debe tener como máximo 500 caracteres</div>
+            <div *ngIf="description.errors?.['pattern']">La descripción solo debe contener letras y espacios</div>
+          </div>
         </div>
-        <button class="btn btn-success">Guardar</button>
-    </form>
+
+        <button class="btn btn-entel" [disabled]="!serviceForm.form.valid">Guardar</button>
+      </form>
+    </div>
 </div>

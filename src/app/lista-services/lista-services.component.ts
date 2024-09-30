@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'; // Importar Router
 import { ServiceService } from '../service.service';
 import { Service } from '../service';  // Asegúrate de tener la clase Service importada
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-services',
@@ -33,9 +34,28 @@ export class ListaServicesComponent implements OnInit {
   }
 
   eliminarService(id: number): void {
-    this.serviceService.eliminarServicio(id).subscribe(dato => {
-      console.log(dato);
-      this.obtenerService();
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Confirma si deseas eliminar al servicio",
+      icon: 'warning', // Cambiado 'type' a 'icon'
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, elimínalo',
+      cancelButtonText: 'No, cancelar',
+      buttonsStyling: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.serviceService.eliminarServicio(id).subscribe(dato => {
+          console.log(dato);
+          this.obtenerService();
+          Swal.fire(
+            'Servicio eliminado',
+            'El servicio ha sido eliminado con exito',
+            'success'
+          )
+        })
+      }
     });
   }
 

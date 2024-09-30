@@ -44,4 +44,10 @@
   .main-content {
     padding-bottom: 50px; /* Añade espacio para que el contenido no sea cubierto por el footer */
   }
+
+  .container {
+    width: 100%;
+    max-width: none; /* Para asegurar que no esté limitado */
+    margin-left: 0px; /* Ajusta el margen hacia la izquierda */
+}
   

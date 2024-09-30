@@ -27,6 +27,16 @@
       <td>{{ user.role }}</td>
       <td>
 
+        <div class="button-group-vertical">
+                <!-- Botón Modificar con estilo naranja -->
+            <button (click)="actualizarUser(user.id)" class="btn btn-entel-modificar">Modificar</button>
+
+                <!-- Botón Eliminar con estilo rojo -->
+            <button (click)="eliminarUser(user.id)" class="btn btn-entel-eliminar">Eliminar</button>
+
+            <!-- Botón Detalles con estilo azul -->
+            <button (click)="detalleUser(user.id)" class="btn btn-entel-detalles">Detalles</button>
+        </div>
       </td>
     </tr>
   </tbody>

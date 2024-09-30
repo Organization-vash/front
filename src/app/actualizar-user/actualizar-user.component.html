@@ -44,7 +44,6 @@
                     [pattern]="user.documentType === 'DNI' ? '^[0-9]{8}$' : '^[0-9]{8,23}$'"
                     placeholder="Ingrese el número de documento"
                     (keypress)="restrictInput($event)"
-                    inputmode="numeric" 
                     #numberDoc="ngModel">
 
                 <!-- Mensajes de Error -->

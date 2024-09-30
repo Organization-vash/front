@@ -39,11 +39,21 @@ export class CrearUserComponent implements OnInit{
 
   restrictInput(event: KeyboardEvent): void {
     const input = event.target as HTMLInputElement;
+    const charCode = event.which ? event.which : event.keyCode;
+  
+    // Limitar longitud dependiendo del tipo de documento
     const maxLength = this.user.documentType === 'DNI' ? 8 : 20;
+  
+    // Si el valor actual ya tiene el máximo de caracteres, evita más entradas
     if (input.value.length >= maxLength) {
+      event.preventDefault();
+      return; // Sal de la función si ya alcanzó la longitud máxima
+    }
+  
+    // Permitir solo números (charCode entre 48 y 57)
+    if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
   }
-
   
 }

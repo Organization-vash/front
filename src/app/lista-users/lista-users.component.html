@@ -1,0 +1,33 @@
+<h2>Lista de Usuarios</h2>
+<table class="table table-striped table-entel">
+  <thead>
+    <tr>
+      <th>TIPO DE DOCUMENTO</th>
+      <th>NUMERO DE DOCUMENTO</th>
+      <th>NOMBRE</th>
+      <th>APELLIDO</th>
+      <th>EMAIL</th>
+      <th>ID DE MODULO</th>
+      <th>CONTRASEÑA</th>
+      <th>NOMBRE DE USUARIO</th>
+      <th>ROL</th>
+      <th>ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.documentType }}</td>
+      <td>{{ user.numberDoc }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.moduleId }}</td>
+      <td>{{ user.password }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.role }}</td>
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

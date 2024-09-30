@@ -1,2 +1,28 @@
-<h1 class="text-center">{{ title }}</h1>
-<app-lista-users></app-lista-users>
+<header class="header-entel">
+    <div>
+      <h1 class="text-center">{{ title }}</h1>
+    </div>
+  </header>
+
+<div class="main-content">
+    <nav class="navbar navbar-expand-sm navbar-entel">
+      <a class="navbar-brand" href="#">
+      </a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="users" routerLinkActive="active" class="nav-link">Lista de Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="crear-user" routerLinkActive="active" class="nav-link">Crear Usuario</a>
+        </li>
+      </ul>
+    </nav>
+  
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+<footer class="footer-entel">
+    <span>😊😊😊</span>
+  </footer>

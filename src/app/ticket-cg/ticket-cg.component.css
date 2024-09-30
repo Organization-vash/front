@@ -1,0 +1,18 @@
+.container {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ticket-box {
+  background-color: #f58220;
+  color: white;
+  padding: 20px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  display: inline-block;
+}

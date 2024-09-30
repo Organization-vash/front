@@ -1,0 +1,39 @@
+<div class="header-bar"></div>
+
+<div class="container">
+  <div class="form-section">
+    <h2>Ingresar Datos</h2>
+
+    <label for="nombre">Nombre completo:</label>
+    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" (input)="validarFormulario()">
+
+    <label for="tipoDocumento">Tipo de Documento:</label>
+    <select id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento" (change)="validarFormulario()">
+      <option value="" disabled selected>Seleccionar</option>
+      <option value="DNI">DNI</option>
+      <option value="Pasaporte">Pasaporte</option>
+      <option value="Carnet de extranjería">Carnet de extranjería</option>
+      <option value="PTP">PTP</option>
+    </select>
+
+    <label for="numeroDocumento">Número de documento:</label>
+    <input type="text" id="numeroDocumento" [(ngModel)]="numeroDocumento" name="numeroDocumento" (input)="validarFormulario()">
+  </div>
+
+  <div class="service-section">
+    <h2>Elegir Servicio</h2>
+
+    <ul>
+      <li *ngFor="let servicio of servicios">
+        <label>
+          <input type="radio" name="servicio" [value]="servicio.name" [(ngModel)]="servicioSeleccionado" (change)="validarFormulario()">
+          {{ servicio.name }}
+        </label>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<button class="btn-generar" [disabled]="!formularioValido" (click)="generarCodigo()">Generar código</button>
+
+<div class="footer-bar"></div>

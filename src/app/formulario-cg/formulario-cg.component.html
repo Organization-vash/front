@@ -4,8 +4,10 @@
   <div class="form-section">
     <h2>Ingresar Datos</h2>
 
+
     <label for="nombre">Nombre completo:</label>
-    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" (input)="validarFormulario()">
+    <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" (input)="validarFormulario()" placeholder="Ingrese su nombre completo"
+           required>
 
     <label for="tipoDocumento">Tipo de Documento:</label>
     <select id="tipoDocumento" [(ngModel)]="tipoDocumento" name="tipoDocumento" (change)="validarFormulario()">
@@ -16,8 +18,38 @@
       <option value="PTP">PTP</option>
     </select>
 
+
     <label for="numeroDocumento">Número de documento:</label>
-    <input type="text" id="numeroDocumento" [(ngModel)]="numeroDocumento" name="numeroDocumento" (input)="validarFormulario()">
+    <input
+      type="text"
+      id="numeroDocumento"
+      [(ngModel)]="numeroDocumento"
+      name="numeroDocumento"
+      (input)="validarFormulario()"
+      (keydown)="permitirSoloNumeros($event)"
+    [attr.maxlength]="tipoDocumento === 'DNI' ? 8 : 20"
+    placeholder="Ingrese el número de documento"
+    required>
+
+    <!-- Mostrar mensaje de éxito si todo está bien -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+
+    <!-- Mostrar mensaje de error si algo sale mal -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Mensaje de error para número de documento -->
+    <div *ngIf="numeroDocumento && !validarDocumento()" class="error">
+      <span *ngIf="tipoDocumento === 'DNI' && numeroDocumento.length !== 8">
+        El número de DNI debe tener exactamente 8 dígitos.
+      </span>
+      <span *ngIf="tipoDocumento !== 'DNI' && (numeroDocumento.length < 6 || numeroDocumento.length > 20)">
+        El número de documento debe tener entre 6 y 20 dígitos.
+      </span>
+    </div>
   </div>
 
   <div class="service-section">

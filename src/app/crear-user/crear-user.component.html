@@ -130,6 +130,8 @@
                     name="moduleId"
                     required
                     placeholder="Digite el ID del módulo"
+                    (keypress)="restrictInput($event)"
+                    inputmode="numeric" 
                     #moduleId="ngModel">
 
                 <!-- Mensajes de Error -->

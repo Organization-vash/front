@@ -1,0 +1,45 @@
+/* Estilo para el encabezado de la tabla */
+.table-entel thead {
+    background-color: #0023A3; /* Azul Entel */
+    color: white;
+  }
+  
+  /* Estilo para las filas de la tabla */
+  .table-entel tbody tr {
+    background-color: #f8f9fa; /* Color claro para las filas */
+  }
+  
+  /* Botones personalizados */
+  
+  /* Botón Modificar (color naranja Entel) */
+  .btn-entel-modificar {
+    background-color: #FF6600; /* Naranja Entel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* Botón Eliminar (color rojo para acciones destructivas) */
+  .btn-entel-eliminar {
+    background-color: #fa0019; /* Rojo Bootstrap */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* Botón Detalles (color azul Entel) */
+  .btn-entel-detalles {
+    background-color: #0023A3; /* Azul Entel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* Margen entre botones */
+  .table-entel .btn {
+    margin-left: 10px;
+  }
+  

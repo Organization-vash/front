@@ -1,0 +1,193 @@
+<div class="col-md-6 offset-md-3">
+    <!-- Encabezado del formulario con fondo azul Entel -->
+    <div class="form-header">
+        <h3>USUARIO</h3>
+    </div>
+
+    <!-- Contenedor del formulario con bordes personalizados -->
+    <div class="form-container">
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+            <!-- Campo Tipo de Documento -->
+            <div class="form-group">
+                <label for="documentType">Tipo de Documento:</label>
+                <select class="form-control"
+                        id="documentType"
+                        [(ngModel)]="user.documentType"
+                        name="documentType"
+                        required
+                        #documentType="ngModel">
+                  <option value="" disabled selected>Seleccione el tipo de documento</option>
+                  <option value="DNI">DNI</option>
+                  <option value="PASAPORTE">Pasaporte</option>
+                  <option value="PTP">PTP</option>
+                  <option value="CARNET_EXTRANJERIA">Carnet de Extranjería</option>
+                </select>
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="documentType.invalid && (documentType.dirty || documentType.touched)">
+                    <div *ngIf="documentType.errors?.['required']">Seleccione el tipo de documento por favor</div>
+                </div>
+            </div>
+
+            <!-- Campo Número de Documento -->
+            <div class="form-group">
+                <label>Número de Documento:</label>
+                <input type="number" class="form-control"
+                    id="numberDoc"
+                    [(ngModel)]="user.numberDoc"
+                    name="numberDoc"
+                    required
+
+
+                    [attr.maxlength]="user.documentType === 'DNI' ? 8 : 23"
+                    [pattern]="user.documentType === 'DNI' ? '^[0-9]{8}$' : '^[0-9]{8,23}$'"
+                    placeholder="Ingrese el número de documento"
+                    (keypress)="restrictInput($event)"
+                    #numberDoc="ngModel">
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="numberDoc.invalid && (numberDoc.dirty || numberDoc.touched)">
+                    <div *ngIf="numberDoc.errors?.['required']">El número de documento es obligatorio</div>
+                    <div *ngIf="numberDoc.errors?.['minlength']">Debe tener al menos {{user.documentType === 'DNI' ? '8' : '9'}} dígitos</div>
+                    <div *ngIf="numberDoc.errors?.['maxlength']">No debe tener más de {{user.documentType === 'DNI' ? '8' : '23'}} dígitos</div>
+                    <div *ngIf="numberDoc.errors?.['pattern']">El número de documento solo debe contener {{user.documentType === 'DNI' ? '8 dígitos' : '8 a 23 dígitos'}}</div>
+                  </div>
+            </div>
+
+            <!-- Campo Nombre -->
+            <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" class="form-control"
+                    id="name"
+                    [(ngModel)]="user.name"
+                    name="name"
+                    required
+                    minlength="5"
+                    maxlength="50"
+                    placeholder="Digite el nombre"
+                    #name="ngModel"
+                    pattern="^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$">
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div *ngIf="name.errors?.['required']">Digite el nombre por favor</div>
+                    <div *ngIf="name.errors?.['minlength']">El nombre debe tener como mínimo 5 caracteres</div>
+                    <div *ngIf="name.errors?.['maxlength']">El nombre debe tener como máximo 50 caracteres</div>
+                    <div *ngIf="name.errors?.['pattern']">El nombre solo debe contener letras y espacios</div>
+                </div>
+            </div>
+
+            <!-- Campo Apellido -->
+            <div class="form-group">
+                <label>Apellido:</label>
+                <input type="text" class="form-control"
+                    id="lastName"
+                    [(ngModel)]="user.lastName"
+                    name="lastName"
+                    required
+                    minlength="5"
+                    maxlength="50"
+                    placeholder="Digite el apellido"
+                    #lastName="ngModel"
+                    pattern="^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$">
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    <div *ngIf="lastName.errors?.['required']">Digite el apellido por favor</div>
+                    <div *ngIf="lastName.errors?.['minlength']">El apellido debe tener como mínimo 5 caracteres</div>
+                    <div *ngIf="lastName.errors?.['maxlength']">El apellido debe tener como máximo 50 caracteres</div>
+                    <div *ngIf="lastName.errors?.['pattern']">El apellido solo debe contener letras y espacios</div>
+                </div>
+            </div>
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control"
+                    id="email"
+                    [(ngModel)]="user.email"
+                    name="email"
+                    required
+                    placeholder="Digite el email"
+                    #email="ngModel"
+                    email>
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <div *ngIf="email.errors?.['required']">Digite el email por favor</div>
+                    <div *ngIf="email.errors?.['email']">El formato de email es incorrecto</div>
+                </div>
+            </div>
+
+            <!-- Campo Módulo ID -->
+            <div class="form-group">
+                <label>ID del Módulo:</label>
+                <input type="number" class="form-control"
+                    id="moduleId"
+                    [(ngModel)]="user.moduleId"
+                    name="moduleId"
+                    required
+                    placeholder="Digite el ID del módulo"
+                    #moduleId="ngModel">
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="moduleId.invalid && (moduleId.dirty || moduleId.touched)">
+                    <div *ngIf="moduleId.errors?.['required']">Digite el ID del módulo por favor</div>
+                </div>
+            </div>
+
+            <!-- Campo Usuario -->
+            <div class="form-group">
+                <label>Nombre de Usuario:</label>
+                <input type="text" class="form-control"
+                    id="username"
+                    [(ngModel)]="user.username"
+                    name="username"
+                    required
+                    placeholder="Digite el nombre de usuario"
+                    #username="ngModel">
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+                    <div *ngIf="username.errors?.['required']">Digite el nombre de usuario por favor</div>
+                </div>
+            </div>
+
+            <!-- Campo Contraseña -->
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" class="form-control"
+                    id="password"
+                    [(ngModel)]="user.password"
+                    name="password"
+                    required
+                    placeholder="Digite la contraseña"
+                    #password="ngModel">
+
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors?.['required']">Digite la contraseña por favor</div>
+                </div>
+            </div>
+
+            <!-- Campo Rol -->
+            <div class="form-group">
+                <label for="role">Rol:</label>
+                <select class="form-control" id="role" [(ngModel)]="user.role" name="role" required>
+                  <option value="" disabled selected>Seleccione un rol</option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="ADVISER">ADVISER</option>
+                  <option value="SUPERVISOR">SUPERVISOR</option>
+                </select>
+              
+                <!-- Mensajes de Error -->
+                <div class="alert alert-danger" *ngIf="userForm.submitted && user.role === ''">
+                  Seleccione un rol por favor
+                </div>
+            </div>
+
+            <button class="btn btn-entel" [disabled]="!userForm.form.valid">Guardar</button>
+        </form>
+    </div>
+</div>

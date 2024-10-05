@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Service } from '../service';
+import { Service } from '../service/service';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceService } from '../service.service';
+import { ServiceService } from '../service/service.service';
 import Swal from 'sweetalert2';
 
 @Component({

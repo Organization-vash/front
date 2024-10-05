@@ -1,53 +1,48 @@
 /* Estilo para el header (barra superior azul) */
 .header-entel {
-    background-color: #0023A3; /* Azul Entel */
-    color: white;
-    padding: 10px;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  /* Estilo para la navbar */
-  .navbar-entel {
-    background-color: #0023A3; /* Azul Entel */
-    color: white;
-  }
-  
-  .navbar-entel .nav-link {
-    color: white !important;
-  }
-  
-  .navbar-entel .nav-link.active {
-    background-color: #FF6600 !important; /* Naranja para la pestaña activa */
-    color: white !important;
-  }
-  
-  /* Estilo para el logo en la navbar */
-  .navbar-entel .navbar-brand img {
-    height: 40px; /* Ajustar el tamaño del logo */
-  }
-  
-  /* Anclaje del footer */
-  .footer-entel {
-    background-color: #FF6600; /* Naranja Entel */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed; /* Mantiene el footer fijo en la parte inferior */
-    bottom: 0; /* Posición en la parte inferior */
-    width: 100%; /* Asegura que el footer ocupe todo el ancho */
-    z-index: 1000; /* Asegura que el footer esté encima de otros elementos */
-  }
-  
-  /* Añadir relleno al contenido para que no cubra el footer */
-  .main-content {
-    padding-bottom: 50px; /* Añade espacio para que el contenido no sea cubierto por el footer */
-  }
-
-  .container {
-    width: 100%;
-    max-width: none; /* Para asegurar que no esté limitado */
-    margin-left: 0px; /* Ajusta el margen hacia la izquierda */
+  background-color: #0023A3; /* Azul Entel */
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
-  
+
+/* Estilo para la navbar */
+.navbar-entel {
+  background-color: #0023A3; /* Azul Entel */
+  color: white;
+}
+
+.navbar-entel .nav-link {
+  color: white !important;
+}
+
+.navbar-entel .nav-link.active {
+  background-color: #FF6600 !important; /* Naranja para la pestaña activa */
+  color: white !important;
+}
+
+/* Estilo para el logo en la navbar */
+.navbar-entel .navbar-brand img {
+  height: 40px; /* Ajustar el tamaño del logo */
+}
+
+/* Anclaje del footer */
+.footer-entel {
+  background-color: #FF6600; /* Naranja Entel */
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed; /* Mantiene el footer fijo en la parte inferior */
+  bottom: 0; /* Posición en la parte inferior */
+  width: 100%; /* Asegura que el footer ocupe todo el ancho */
+  z-index: 1000; /* Asegura que el footer esté encima de otros elementos */
+}
+
+/* Añadir relleno al contenido para que no cubra el footer */
+.main-content {
+  padding-bottom: 50px; /* Añade espacio para que el contenido no sea cubierto por el footer */
+}
+
+

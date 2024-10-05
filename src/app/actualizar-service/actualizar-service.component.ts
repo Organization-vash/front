@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';  // Importar FormsModule
 import { Router, ActivatedRoute } from '@angular/router';  // Importar Router y ActivatedRoute
-import { ServiceService } from '../service.service';
-import { Service } from '../service';
+import { ServiceService } from '../service/service.service';
+import { Service } from '../service/service';
 import { tap, catchError } from 'rxjs/operators';  // Importar operadores de RxJS
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';

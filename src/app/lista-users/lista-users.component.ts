@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -31,7 +31,7 @@ export class ListaUsersComponent implements OnInit {
     Swal.fire({
       title: '¿Estás seguro?',
       text: "Confirma si deseas eliminar al usuario",
-      icon: 'warning', 
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -40,7 +40,7 @@ export class ListaUsersComponent implements OnInit {
       buttonsStyling: true
     }).then((result) => {
       if (result.isConfirmed) {
-        this.serviceService.eliminarUsuario(id).subscribe(dato => { 
+        this.serviceService.eliminarUsuario(id).subscribe(dato => {
           console.log(dato);
           this.ngOnInit();  // Recarga la lista de usuarios
           Swal.fire(

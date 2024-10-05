@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router'; // Importar Router
-import { ServiceService } from '../service.service';
-import { Service } from '../service';  // Asegúrate de tener la clase Service importada
+import { ServiceService } from '../service/service.service';
+import { Service } from '../service/service';  // Asegúrate de tener la clase Service importada
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,7 +26,7 @@ export class ListaServicesComponent implements OnInit {
   actualizarService(id: number){
     this.router.navigate(["actualizar-service", id]);  // Navegación
   }
-  
+
   private obtenerService(): void {
     this.serviceService.obtenerListaDeServicios().subscribe(dato => {
       this.services = dato;

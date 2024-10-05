@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { User } from '../user';
+import { User } from '../user/user';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../user.service';
-import Swal from 'sweetalert2'; 
+import { UserService } from '../user/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle-user',

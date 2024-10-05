@@ -11,6 +11,15 @@ export const routes: Routes = [
   {path: "crear-service",component:CrearServiceComponent},
   {path : 'detalle-service/:id',component : DetalleServiceComponent},
   {path : 'actualizar-service/:id',component : ActualizarServiceComponent},
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from "./login/login.component";
+import {ListaServicesComponent} from "./lista-services/lista-services.component";
+
+export const routes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'lista-services', component: ListaServicesComponent },
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
@@ -18,3 +27,5 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+}) 
+export class AppRoutesModule {}

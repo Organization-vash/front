@@ -1,21 +1,11 @@
 .login-container {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 100vh;
   background-color: #ffffff;
-}
-
-.header {
-  width: 100%;
-  background-color: #1e3fa2;
-  padding: 10px 0;
-}
-
-.entel-logo {
-  max-width: 150px;
-  margin-left: 20px;
 }
 
 .login-box {
@@ -62,10 +52,4 @@
   cursor: pointer;
   width: 100%;
   font-size: 1.2em;
-}
-
-.footer-bar {
-  width: 100%;
-  height: 50px;
-  background-color: #f58220;
 }

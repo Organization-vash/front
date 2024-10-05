@@ -1,0 +1,25 @@
+/* Estilo del título principal */
+.detalle-titulo {
+    color: #0023A3; /* Azul Entel */
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px; /* Añadir espacio debajo del título */
+  }
+  
+  /* Estilo para las etiquetas (ID, Nombre, Tipo, Descripción) */
+  .detalle-label {
+    font-weight: bold;
+    color: #FF6600; /* Naranja Entel */
+    margin-right: 10px;
+  }
+  
+  /* Estilo para los valores de los detalles */
+  .detalle-valor {
+    color: #333; /* Texto oscuro estándar */
+  }
+  
+  /* Espacio entre los detalles */
+  .detalle-item {
+    margin-bottom: 10px; /* Espacio entre cada fila de detalle */
+  }
+  

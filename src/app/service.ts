@@ -1,8 +1,7 @@
 export class Service {
-
-    id : number;
+    id: number;
     name: string;
-    type : string;
-    description : string;
-
-}
+    type: string;
+    description: string;
+  }
+  

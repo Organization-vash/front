@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="header">
+    <img src="entellogo.png" alt="Entel Logo" class="entel-logo">
+  </div>
+
+  <div class="login-box">
+    <h1 class="title">VASH</h1>
+    <p class="subtitle">Hola, ingresa tus datos!</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-user"></i></span>
+        </div>
+        <input id="email" type="email" class="form-control" placeholder="Correo" [(ngModel)]="email" name="email">
+      </div>
+
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        </div>
+        <input id="password" type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="password" name="password">
+      </div>
+
+      <button type="submit" class="btn-submit">Iniciar sesión</button>
+    </form>
+
+  </div>
+
+  <div class="footer-bar"></div>
+</div>

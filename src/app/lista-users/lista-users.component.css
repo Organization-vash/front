@@ -42,4 +42,15 @@
   .table-entel .btn {
     margin-left: 10px;
   }
+ 
+  .button-group-vertical {
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    gap: 8px; /* Espaciado entre botones */
+  }
+  
+  .btn {
+    width: 100%; /* Para que ocupen el 100% del ancho de la celda */
+    text-align: center;
+  }
   

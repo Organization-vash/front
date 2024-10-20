@@ -1,4 +1,8 @@
 /* Estilo para el encabezado de la tabla */
+.row{
+  margin-top: 10px;
+}
+
 .table-entel thead {
     background-color: #0023A3; /* Azul Entel */
     color: white;
@@ -43,3 +47,23 @@
     margin-left: 10px;
   }
   
+/* Estilos para la barra de búsqueda y el botón Search */
+.input-group .form-control {
+  border-color: #0023A3; /* Azul Entel */
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  box-shadow: none;
+}
+
+.input-group .form-control:focus {
+  border-color: #FF6600; /* Naranja Entel */
+  box-shadow: 0 0 0 0.2rem rgba(255, 102, 0, 0.25); /* Sombra naranja */
+}
+
+.btn-entel-search {
+  background-color: #FF6600; /* Naranja Entel */
+  color: white;
+  border: 1px solid #FF6600;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}

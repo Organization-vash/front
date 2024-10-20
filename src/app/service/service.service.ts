@@ -30,4 +30,8 @@ export class ServiceService {
   eliminarServicio(id:number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
+
+  obtenerServicioPorName(name: string): Observable<Service> {
+    return this.httpClient.get<Service>(`${this.baseURL}/name/${name}`);
+  }
 }

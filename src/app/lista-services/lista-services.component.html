@@ -1,4 +1,22 @@
-<h2>Lista de Servicios</h2>
+<div class="row align-items-center mb-3">
+  <div class="col-md-6">
+    <h2 class="mb-0">Lista de Servicios</h2>
+  </div>
+  <div class="col-md-6 text-md-end">
+    <div class="input-group">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Buscar por nombre..." 
+        [(ngModel)]="searchTerm"
+        aria-label="Buscar servicio"
+      />
+      <button class="btn btn-entel-search" type="submit" (click)="buscarServicePorNombre()">Search</button>
+    </div>
+  </div>
+</div>
+
+
 <table class="table table-striped table-entel">
   <thead>
     <tr>

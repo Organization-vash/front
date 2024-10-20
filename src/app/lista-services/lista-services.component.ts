@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   selector: 'app-lista-services',
   standalone: true,
   imports: [CommonModule, FormsModule], // Agrega FormsModule aquí
-  templateUrl: './lista-services.component.html',
+  templateUrl: './lista-services.component.html', 
   styleUrls: ['./lista-services.component.css'],
 })
 export class ListaServicesComponent implements OnInit {

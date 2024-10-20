@@ -4,14 +4,29 @@
 }
 
 .table-entel thead {
-    background-color: #0023A3; /* Azul Entel */
-    color: white;
-  }
-  
-  /* Estilo para las filas de la tabla */
-  .table-entel tbody tr {
-    background-color: #f8f9fa; /* Color claro para las filas */
-  }
+  background-color: #0023A3; /* Azul Entel */
+  color: white;
+  border-bottom: 2px solid #FF6600; /* Línea inferior naranja para el encabezado */
+}
+
+/* Estilo para las filas de la tabla */
+.table-entel tbody tr {
+  background-color: #f8f9fa; /* Color claro para las filas */
+  border-bottom: 1px solid #dee2e6; /* Borde suave para separar las filas */
+}
+
+/* Efecto al pasar el cursor por una fila */
+.table-entel tbody tr:hover {
+  background-color: #e0e7ff; /* Fondo azul claro al pasar el cursor */
+  border-color: #0023A3; /* Borde azul al pasar el cursor */
+}
+
+/* Bordes de la tabla */
+.table-entel {
+    border-collapse: separate; /* Mantener bordes separados para un diseño moderno */
+    border-spacing: 0; /* Sin espaciado entre celdas */
+}
+
   
   /* Botones personalizados */
   

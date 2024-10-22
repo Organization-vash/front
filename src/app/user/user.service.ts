@@ -31,4 +31,18 @@ export class UserService {
   eliminarUsuario(id:number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
+
+  buscarUsuarioPorNombreONumberDoc(name?: string, numberDoc?: number): Observable<User[]> {
+    // Construir los parámetros de búsqueda dinámicamente
+    let params: any = {};
+    if (name && name.trim() !== '') {
+      params.name = name;
+    }
+    if (numberDoc) {
+      params.numberDoc = numberDoc;
+    }
+  
+    // Realizar la solicitud GET con los parámetros de búsqueda
+    return this.httpClient.get<User[]>(`${this.baseURL}/search`, { params });
+  }
 }

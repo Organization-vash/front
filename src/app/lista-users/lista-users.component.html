@@ -1,43 +1,133 @@
-<h2>Lista de Usuarios</h2>
-<table class="table table-striped table-entel">
-  <thead>
-    <tr>
-      <th>TIPO DE DOCUMENTO</th>
-      <th>NUMERO DE DOCUMENTO</th>
-      <th>NOMBRE</th>
-      <th>APELLIDO</th>
-      <th>EMAIL</th>
-      <th>ID DE MODULO</th>
-      <th>CONTRASEÑA</th>
-      <th>NOMBRE DE USUARIO</th>
-      <th>ROL</th>
-      <th>ACCIONES</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.documentType }}</td>
-      <td>{{ user.numberDoc }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.moduleId }}</td>
-      <td>{{ user.password }}</td>
-      <td>{{ user.username }}</td>
-      <td>{{ user.role }}</td>
-      <td>
-
-        <div class="button-group-vertical">
-                <!-- Botón Modificar con estilo naranja -->
-            <button (click)="actualizarUser(user.id)" class="btn btn-entel-modificar">Modificar</button>
-
-                <!-- Botón Eliminar con estilo rojo -->
-            <button (click)="eliminarUser(user.id)" class="btn btn-entel-eliminar">Eliminar</button>
-
-            <!-- Botón Detalles con estilo azul -->
-            <button (click)="detalleUser(user.id)" class="btn btn-entel-detalles">Detalles</button>
+<div class="row">
+  <!-- Columna para la lista de usuarios -->
+  <div class="col-md-12 col-lg-6 mb-4">
+    <div class="row align-items-center mb-3">
+      <div class="col-md-6">
+        <h2 class="mb-0">Lista de Usuarios</h2>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar por nombre o número de documento..."
+            [(ngModel)]="searchTerm"
+            aria-label="Buscar usuario"
+          />
+          <button
+            class="btn btn-entel-search"
+            type="button"
+            (click)="buscarUsuarioporNombreoNro()"
+          >
+            Search
+          </button>
         </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+
+    <table class="table table-striped table-entel">
+      <thead>
+        <tr>
+          <th>NUMERO DE DOCUMENTO</th>
+          <th>NOMBRE</th>
+          <th>APELLIDO</th>
+          <th>ROL</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.numberDoc }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <div class="button-group-vertical">
+              <button
+                (click)="actualizarUser(user.id)"
+                class="btn btn-entel-modificar"
+              >
+                Modificar
+              </button>
+              <button
+                (click)="eliminarUser(user.id)"
+                class="btn btn-entel-eliminar"
+              >
+                Eliminar
+              </button>
+              <button
+                (click)="detalleUser(user.id)"
+                class="btn btn-entel-detalles"
+              >
+                Detalles
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Columna para la lista de servicios -->
+  <div class="col-md-12 col-lg-6">
+    <div class="row align-items-center mb-3">
+      <div class="col-md-6">
+        <h2 class="mb-0">Lista de Servicios</h2>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar por nombre..."
+            [(ngModel)]="searchTerm1"
+            aria-label="Buscar servicio"
+          />
+          <button
+            class="btn btn-entel-search"
+            type="submit"
+            (click)="buscarServicePorNombre()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped table-entel">
+      <thead>
+        <tr>
+          <th>NRO</th>
+          <th>NOMBRE</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of services">
+          <td>{{ service.id }}</td>
+          <td>{{ service.name }}</td>
+          <td>
+            <button
+              (click)="actualizarService(service.id)"
+              class="btn btn-entel-modificar1"
+            >
+              Modificar
+            </button>
+            <button
+              (click)="eliminarService(service.id)"
+              class="btn btn-entel-eliminar1"
+            >
+              Eliminar
+            </button>
+            <button
+              (click)="detalleService(service.id)"
+              class="btn btn-entel-detalles1"
+            >
+              Detalles
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

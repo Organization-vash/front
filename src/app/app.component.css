@@ -34,10 +34,6 @@
   color: white;
   text-align: center;
   padding: 10px;
-  position: fixed; /* Mantiene el footer fijo en la parte inferior */
-  bottom: 0; /* Posición en la parte inferior */
-  width: 100%; /* Asegura que el footer ocupe todo el ancho */
-  z-index: 1000; /* Asegura que el footer esté encima de otros elementos */
 }
 
 /* Añadir relleno al contenido para que no cubra el footer */
@@ -45,4 +41,8 @@
   padding-bottom: 50px; /* Añade espacio para que el contenido no sea cubierto por el footer */
 }
 
-
+div {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+}

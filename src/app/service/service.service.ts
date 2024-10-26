@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Service } from './service';  // Tu modelo de Service
+import { Service } from './service';
+import { Module } from "./module.service";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class ServiceService {
 
   obtenerServicioPorName(name: string): Observable<Service> {
     return this.httpClient.get<Service>(`${this.baseURL}/name/${name}`);
+  }
+
+  getModuleById(moduleId: number): Observable<Module> {
+    return this.httpClient.get<Module>(`${this.baseURL}/${moduleId}`);
   }
 }

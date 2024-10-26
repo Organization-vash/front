@@ -1,0 +1,25 @@
+.container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+input[type="number"] {
+  padding: 8px;
+  border: 2px solid orange;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn-next {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btn-next:hover {
+  background-color: darkorange;
+}

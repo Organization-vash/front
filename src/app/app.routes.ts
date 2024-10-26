@@ -12,11 +12,13 @@ import {CrearServiceComponent} from "./crear-service/crear-service.component";
 import {DetalleServiceComponent} from "./detalle-service/detalle-service.component";
 import {ActualizarServiceComponent} from "./actualizar-service/actualizar-service.component";
 import {LoginComponent} from "./login/login.component";
+import {NextQueueComponent} from "./next-queue/next-queue.component";
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
   { path: 'formulario', component: FormularioCgComponent },
   { path: 'ticket', component: TicketComponent },
+  { path: 'nqc', component: NextQueueComponent},
 
   // Rutas para login
   { path: 'login', component: LoginComponent },
@@ -36,8 +38,6 @@ export const routes: Routes = [
   // Ruta comodín para redirigir si no encuentra otra ruta
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

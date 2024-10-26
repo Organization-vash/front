@@ -1,1 +1,19 @@
-<p>next-queue works!</p>
+<div class="container">
+  <div>
+    <label for="moduleIdInput">ModuleId:</label>
+    <input
+      type="number"
+      id="moduleIdInput"
+      [(ngModel)]="moduleId"
+      (change)="fetchModuleStatus()"
+      placeholder="moduleId"
+    />
+  </div>
+  <div *ngIf="moduleStatus">
+    <p>
+      <strong>ModuleStatus:</strong>
+      {{ moduleStatus }}
+    </p>
+  </div>
+  <button class="btn-next" (click)="goToNextInQueue">Siguiente en cola</button>
+</div>

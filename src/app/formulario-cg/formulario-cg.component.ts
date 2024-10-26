@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { TicketService } from "../ticket.service";
+import { TicketService } from "../service/ticket.service";
 import { CommonModule, NgFor } from "@angular/common";
-import { CustomerService } from "../customer.service";
+import { CustomerService } from "../service/customer.service";
 import { DocumentType } from '../document-type.enum';
 
 @Component({

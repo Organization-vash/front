@@ -1,37 +1,83 @@
 import { Component } from '@angular/core';
-import { ServiceService } from "../service/service.service";
+import {ModuleService} from "../service/module.service";
+import { nextQueueService } from "../service/nextQueue.service";
 import { Module } from "../service/module.service";
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-next-queue',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './next-queue.component.html',
   styleUrl: './next-queue.component.css'
 })
 export class NextQueueComponent {
-  moduleId: number | null = null;
-  moduleStatus: string | null = null;
+  moduleId: number;
+  moduleStatus: string | undefined;
+  mostrarPopup: boolean = false;
+  showAcceptPopup: boolean = false;
+  showRejectPopup: boolean = false;
 
-  constructor(private moduleService: ServiceService) {}
+  ticket = {
+    ticketCode: '',
+    serviceName: '',
+    customerDocNumber: '',
+    customerFullName: ''
+  };
 
-  fetchModuleStatus(): void{
-    if(this.moduleId){
-      this.moduleService.getModuleById(this.moduleId).subscribe(
-        (module: Module) => {
-          return this.moduleStatus = module.moduleStatus;
-        },
-        error => {
-          console.error("Error al obtener el módulo", error);
-          this.moduleStatus = "Modulo no encontrado";
-        }
-      );
-    }
+  constructor(private moduleService: ModuleService, private nextQueueService: nextQueueService) {}
+
+  fetchModuleStatus(moduleId: number) {
+    this.moduleService.getModuleById(moduleId).subscribe(
+      (module: Module) => {
+        this.moduleStatus = module.moduleStatus;
+      },
+      (error) => {
+        console.error('Error fetching module status:', error);
+        this.moduleStatus = undefined;
+      }
+    );
   }
-  goToNextInQueue(): void {
-    console.log("Función siguiente en cola");
+  mostrarModal() {
+    this.nextQueueService.getNextTicketInQueue(this.moduleId).subscribe(
+      (response) => {
+        this.ticket = {
+          ticketCode: response.ticketCode,
+          serviceName: response.serviceName,
+          customerDocNumber: response.customerDocNumber,
+          customerFullName: response.customerFullName
+        };
+        this.mostrarPopup = true;
+      },
+      (error) => {
+        console.error('Error fetching next ticket:', error);
+      }
+    );
+  }
+
+  aceptarTicket() {
+    this.nextQueueService.acceptTicket().subscribe(() => {
+      this.mostrarPopup = false;
+      this.showAcceptPopup = true;
+      setTimeout(() => {
+        this.showAcceptPopup = false;
+      }, 3000);
+      console.log("Ticket aceptado");
+    });
+  }
+
+  rechazarTicket() {
+    this.nextQueueService.rejectTicket().subscribe(() => {
+      this.mostrarPopup = false;
+      this.showRejectPopup = true;
+      setTimeout(() => {
+        this.showRejectPopup = false;
+      }, 3000);
+      console.log("Ticket rechazado");
+    });
   }
 }

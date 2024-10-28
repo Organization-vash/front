@@ -1,19 +1,52 @@
 <div class="container">
   <div>
-    <label for="moduleIdInput">ModuleId:</label>
+    <label for="moduleId">ModuleId:</label>
     <input
       type="number"
-      id="moduleIdInput"
       [(ngModel)]="moduleId"
-      (change)="fetchModuleStatus()"
-      placeholder="moduleId"
+      (change)="fetchModuleStatus(moduleId)"
+      placeholder="Ingresa el modulo"
     />
   </div>
-  <div *ngIf="moduleStatus">
-    <p>
-      <strong>ModuleStatus:</strong>
-      {{ moduleStatus }}
-    </p>
+  <div>
+    <p>ModuleStatus: {{ moduleStatus }}</p>
+
+    <button (click)="mostrarModal()" [disabled]="moduleStatus !== 'ACTIVE'">Siguiente en cola</button>
+
+    <div *ngIf="mostrarPopup" class="modal-overlay">
+      <div class="modal-content">
+        <h2>SIGUIENTE EN COLA</h2>
+        <p><strong>Código: </strong> {{ ticket.ticketCode }} </p>
+        <p><strong>Servicio: </strong> {{ ticket.serviceName }} </p>
+        <p><strong>N° Documento: </strong> {{ ticket.customerDocNumber }} </p>
+        <p><strong>Nombre completo: </strong> {{ ticket.customerFullName }} </p>
+        <div class="modal-buttons">
+          <button (click)="aceptarTicket()">Aceptar</button>
+          <button (click)="rechazarTicket()">No Aceptar</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <button class="btn-next" (click)="goToNextInQueue">Siguiente en cola</button>
+
+  <!-- Popup de Confirmación de Aceptación -->
+  <div *ngIf="showAcceptPopup" class="modal-overlay">
+    <div class="modal-content">
+      <h3 class="modal-title">CÓDIGO ACEPTADO</h3>
+      <div class="modal-body">
+        <i class="info-icon">ℹ️</i>
+        <p>Ticket accepted</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup de Confirmación de Rechazo -->
+  <div *ngIf="showRejectPopup" class="modal-overlay">
+    <div class="modal-content">
+      <h3 class="modal-title">CÓDIGO RECHAZADO</h3>
+      <div class="modal-body">
+        <i class="info-icon">ℹ️</i>
+        <p>Ticket rejected</p>
+      </div>
+    </div>
+  </div>
 </div>

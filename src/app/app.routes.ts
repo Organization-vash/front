@@ -13,12 +13,14 @@ import {DetalleServiceComponent} from "./detalle-service/detalle-service.compone
 import {ActualizarServiceComponent} from "./actualizar-service/actualizar-service.component";
 import {LoginComponent} from "./login/login.component";
 import {NextQueueComponent} from "./next-queue/next-queue.component";
+import {AttendTcComponent} from "./attend-tc/attend-tc.component";
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
   { path: 'formulario', component: FormularioCgComponent },
   { path: 'ticket', component: TicketComponent },
   { path: 'nqc', component: NextQueueComponent},
+  { path: 'attention', component: AttendTcComponent},
 
   // Rutas para login
   { path: 'login', component: LoginComponent },

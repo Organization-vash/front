@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atención al Cliente</title>
+
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <h3>NOMBRE:</h3>
+    <p>ID:</p>
+    <p>MODULO:</p>
+    <div class="status-section">
+      <p>Estado actual del módulo</p>
+      <button class="status-button status-activated">ACTIVAR</button>
+      <button class="status-button status-deactivated">DESACTIVAR</button>
+      <button class="status-button status-recess">RECESO</button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="header">
+      <h2>ATENCIÓN</h2>
+      <div class="timer">--</div>
+    </div>
+
+    <div class="content-section">
+      <div class="client-info">
+        <div *ngIf="ticketData">
+          <h4>ATENCIÓN N° {{ ticketData.ticketCode }} </h4>
+          <p><strong>CLIENTE</strong></p>
+          <p>Nombre: {{ ticketData.customerFullName }} </p>
+          <p>N° Documento: {{ ticketData.customerDocNumber }} </p>
+          <p>HORA DE INICIO:</p>
+        </div>
+
+        <textarea class="comment-box" placeholder="AGREGAR COMENTARIO"></textarea>
+
+        <div class="checkbox-section">
+          <label><input type="checkbox"> ATENDIDO</label>
+          <label><input type="checkbox"> NO ATENDIDO</label>
+        </div>
+
+        <button class="finalize-button">FINALIZAR</button>
+      </div>
+      <div class="services">
+        <div class="services-list">
+          <div class="service-box">
+            <h4>SERVICIOS ELEGIDOS</h4>
+            <div class="service-item">
+              <p>{{ ticketData.serviceName }}</p>
+              <button>-</button>
+            </div>
+          </div>
+
+          <div class="service-box">
+            <h4>SERVICIOS</h4>
+            <ul>
+              <li *ngFor="let service of services">
+                <span>{{ service.name }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button class="survey-button">Realizar encuesta</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

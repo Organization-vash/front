@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atención al Cliente</title>
-
 </head>
 <body>
 <div class="container">
@@ -50,8 +49,7 @@
           <div class="service-box">
             <h4>SERVICIOS ELEGIDOS</h4>
             <div class="service-item">
-              <p>{{ ticketData.serviceName }}</p>
-              <button>-</button>
+              <p>{{ ticketData.serviceName }} <button>-</button> </p>
             </div>
           </div>
 
@@ -59,7 +57,7 @@
             <h4>SERVICIOS</h4>
             <ul>
               <li *ngFor="let service of services">
-                <span>{{ service.name }}</span>
+                <span>{{ service.name }} <button class="add-button">+</button> </span>
               </li>
             </ul>
           </div>

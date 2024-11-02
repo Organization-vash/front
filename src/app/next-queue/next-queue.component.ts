@@ -4,6 +4,8 @@ import { nextQueueService } from "../service/nextQueue.service";
 import { Module } from "../service/module.service";
 import { FormsModule } from "@angular/forms";
 import {NgIf} from "@angular/common";
+import {Router} from "@angular/router";
+import {ticketAttendedTcComponent} from "../attend-tc/ticket-attend-tc.component";
 
 @Component({
   selector: 'app-next-queue',
@@ -29,7 +31,7 @@ export class NextQueueComponent {
     customerFullName: ''
   };
 
-  constructor(private moduleService: ModuleService, private nextQueueService: nextQueueService) {}
+  constructor(private router: Router, private moduleService: ModuleService, private nextQueueService: nextQueueService, private ticketAttendTc: ticketAttendedTcComponent) {}
 
   fetchModuleStatus(moduleId: number) {
     this.moduleService.getModuleById(moduleId).subscribe(
@@ -67,6 +69,9 @@ export class NextQueueComponent {
         this.showAcceptPopup = false;
       }, 3000);
       console.log("Ticket aceptado");
+      this.router.navigate(['/attention'])
+      this.ticketAttendTc.setTicketData(this.ticket);
+
     });
   }
 

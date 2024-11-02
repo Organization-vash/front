@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DocumentType } from './document-type.enum';  // Importamos el enum para el tipo de documento
+import { DocumentType } from '../document-type.enum';  // Importamos el enum para el tipo de documento
 
 @Injectable({
   providedIn: 'root',

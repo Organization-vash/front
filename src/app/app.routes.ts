@@ -14,6 +14,9 @@ import {ActualizarServiceComponent} from "./actualizar-service/actualizar-servic
 import {LoginComponent} from "./login/login.component";
 import {NextQueueComponent} from "./next-queue/next-queue.component";
 import {AttendTcComponent} from "./attend-tc/attend-tc.component";
+import { ListaModulesComponent } from './modules/list-modules/list-modules.component';
+import { CreateModuleComponent } from './modules/create-module/create-module.component';
+import { ChangeStatusModuleComponent } from './modules/change-status-module/change-status-module.component';
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -37,6 +40,12 @@ export const routes: Routes = [
   { path: 'detalle-user/:id', component: DetalleUserComponent },
   { path: 'actualizar-user/:id', component: ActualizarUserComponent },
 
+
+  // Rutas para lo de modulos
+  { path: 'list-modules', component: ListaModulesComponent },
+  { path: 'create-module', component: CreateModuleComponent },
+  { path: 'change-status-module', component: ChangeStatusModuleComponent },
+  
   // Ruta comodín para redirigir si no encuentra otra ruta
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

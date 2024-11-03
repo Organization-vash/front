@@ -6,11 +6,12 @@ import { Service } from '../service/service';
 import { tap, catchError } from 'rxjs/operators';  // Importar operadores de RxJS
 import { of } from 'rxjs';
 import Swal from 'sweetalert2';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-actualizar-service',
   standalone: true,
-  imports: [FormsModule],  // Importar FormsModule para ngModel
+  imports: [FormsModule, NgIf],  // Importar FormsModule para ngModel
   templateUrl: './actualizar-service.component.html',
   styleUrls: ['./actualizar-service.component.css']
 })

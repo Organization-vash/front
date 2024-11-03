@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Service } from './service';  // Tu modelo de Service
+import { Service } from './service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +29,9 @@ export class ServiceService {
 
   eliminarServicio(id:number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
+
+  obtenerServicioPorName(name: string): Observable<Service> {
+    return this.httpClient.get<Service>(`${this.baseURL}/name/${name}`);
   }
 }

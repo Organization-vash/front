@@ -12,6 +12,8 @@ import {CrearServiceComponent} from "./crear-service/crear-service.component";
 import {DetalleServiceComponent} from "./detalle-service/detalle-service.component";
 import {ActualizarServiceComponent} from "./actualizar-service/actualizar-service.component";
 import {LoginComponent} from "./login/login.component";
+import {NextQueueComponent} from "./next-queue/next-queue.component";
+import {AttendTcComponent} from "./attend-tc/attend-tc.component";
 import { ListaModulesComponent } from './modules/list-modules/list-modules.component';
 import { CreateModuleComponent } from './modules/create-module/create-module.component';
 import { ChangeStatusModuleComponent } from './modules/change-status-module/change-status-module.component';
@@ -20,6 +22,8 @@ export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
   { path: 'formulario', component: FormularioCgComponent },
   { path: 'ticket', component: TicketComponent },
+  { path: 'nqc', component: NextQueueComponent},
+  { path: 'attention', component: AttendTcComponent},
 
   // Rutas para login
   { path: 'login', component: LoginComponent },
@@ -44,7 +48,6 @@ export const routes: Routes = [
   
   // Ruta comodín para redirigir si no encuentra otra ruta
   { path: '**', redirectTo: '', pathMatch: 'full' },
-
 ];
 
 @NgModule({

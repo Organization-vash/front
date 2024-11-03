@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { TicketService } from "../ticket.service";
+import { TicketService } from "../service/ticket.service";
 import { CommonModule, NgFor } from "@angular/common";
-import { CustomerService } from "../customer.service";
+import { CustomerService } from "../service/customer.service";
 import { DocumentType } from '../document-type.enum';
 
 @Component({
@@ -73,8 +73,6 @@ export class FormularioCgComponent {
     });
   }
 
-
-
   validarDocumento(): boolean {
     const esDNI = this.tipoDocumento === 'DNI';
     return esDNI
@@ -104,7 +102,7 @@ export class FormularioCgComponent {
       const serviceId = service.id;
       const agencyId = 1;
 
-      this.ticketService.generarTicket(this.tipoDocumento, this.nombre, serviceId, agencyId).subscribe({
+      this.ticketService.generarTicket(this.numeroDocumento, this.nombre, serviceId, agencyId).subscribe({
         next: (response) => {
           this.router.navigate(['/ticket'], { state: { ticket: response } });
         },

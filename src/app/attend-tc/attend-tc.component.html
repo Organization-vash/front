@@ -38,8 +38,20 @@
         <textarea class="comment-box" placeholder="AGREGAR COMENTARIO"></textarea>
 
         <div class="checkbox-section">
-          <label><input type="checkbox"> ATENDIDO</label>
-          <label><input type="checkbox"> NO ATENDIDO</label>
+          <label>
+            <input
+              type="radio"
+              name="attendance"
+              [checked]="successful"
+              (change)="markAsSuccessful()"> EXITOSO
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="attendance"
+              [checked]="notSuccessful"
+              (change)="markAsNotSuccessful()"> NO EXITOSO
+          </label>
         </div>
 
         <button class="finalize-button">FINALIZAR</button>

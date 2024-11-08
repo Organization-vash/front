@@ -2,6 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+// Interfaz para definir la estructura del módulo
+export interface Module {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  moduleStatus: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,23 +19,24 @@ export class ModuleService {
   constructor(private httpClient: HttpClient) {}
 
   // Obtener lista de módulos
-  obtenerListaDeModulos(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.baseURL}/all`);
+  obtenerListaDeModulos(): Observable<Module[]> {
+    return this.httpClient.get<Module[]>(`${this.baseURL}/all`);
   }
 
   // Crear un nuevo módulo
-  crearModulo(module: any): Observable<Object> {
+  crearModulo(module: Module): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}/create`, module);
   }
 
   // Actualizar un módulo
-  actualizarModulo(module: any): Observable<Object> {
+  actualizarModulo(module: Module): Observable<Object> {
+    console.log('Payload enviado al backend:', module);
     return this.httpClient.put(`${this.baseURL}/change-status`, module);
-  }
+}
 
   // Obtener un módulo por ID
-  obtenerModuloPorId(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${this.baseURL}/${id}`);
+  obtenerModuloPorId(id: number): Observable<Module> {
+    return this.httpClient.get<Module>(`${this.baseURL}/${id}`);
   }
 
   // Eliminar un módulo

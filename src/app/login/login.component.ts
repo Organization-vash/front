@@ -20,12 +20,36 @@ export class LoginComponent {
   onSubmit(): void {
     this.authService.login(this.email, this.password).subscribe(
       response => {
-        console.log('Respuesta del servidor:', response);
+        console.log('Respuesta completa del servidor:', response); // Verifica los datos de la respuesta
 
-        if (response === 'Login successful') {
-          this.router.navigate(['/lista-services']);
+        if (response.message === 'Login successful') {
+          const userRole = response.role;
+          const userModuleId = response.moduleId;
+          const userId = response.id;         // Obtiene el ID del usuario
+          const userName = response.name;     // Obtiene el nombre del usuario
+
+          // Almacena la información en el localStorage solo si está disponible
+          localStorage.setItem('loggedUser', JSON.stringify({
+            userId: userId || '',         // Si no hay ID, almacena cadena vacía
+            name: userName || '',         // Si no hay nombre, almacena cadena vacía
+            moduleId: userModuleId,
+            role: userRole
+          }));
+
+          console.log('Datos almacenados en localStorage:', {
+            userId: userId,
+            name: userName,
+            moduleId: userModuleId,
+            role: userRole
+          });
+
+          // Redirigir solo a /nqc si el rol es ADVISER
+          if (userRole === 'ADVISER') {
+            console.log('Redirigiendo a /nqc');
+            this.router.navigate(['/nqc']);
+          }
         } else {
-          this.error = response;
+          this.error = response.message; // Manejo de error
         }
       },
       error => {

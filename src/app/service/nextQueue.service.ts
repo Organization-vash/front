@@ -21,4 +21,11 @@ export class nextQueueService {
   rejectTicket(): Observable<any> {
     return this.http.post(`${this.baseURL}/reject`, {});
   }
+  markAsAttend(): Observable<any> {
+    return this.http.post(`${this.baseURL}/markAsAttend`, {});
+  }
+
+  markAsNotAttend(): Observable<any> {
+    return this.http.post(`${this.baseURL}/markAsNotAttend`, {});
+  }
 }

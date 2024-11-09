@@ -2,13 +2,16 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {ticketAttendedTcComponent} from "./ticket-attend-tc.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {ServiceService} from "../service/service.service";
+import { nextQueueService } from "../service/nextQueue.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-attend-tc',
   standalone: true,
   imports: [
     NgIf,
-    NgForOf
+    NgForOf,
+    FormsModule
   ],
   templateUrl: './attend-tc.component.html',
   styleUrl: './attend-tc.component.css'
@@ -22,8 +25,9 @@ export class AttendTcComponent implements OnInit{
   ticketData: any;
   services: any[] = [];
   chosenServices: any[] = [];
-
-  constructor(private ticketService: ticketAttendedTcComponent, private serviceService: ServiceService) {}
+  attended: boolean = false;
+  notAttended: boolean = false;
+  constructor(private ticketService: ticketAttendedTcComponent, private serviceService: ServiceService, private nextQueueService: nextQueueService) {}
 
   ngOnInit(): void {
     this.ticketService.getTicketData().subscribe(data => {
@@ -35,5 +39,26 @@ export class AttendTcComponent implements OnInit{
     this.serviceService.obtenerListaDeServicios().subscribe((dato) => {
       this.services = dato;
     });
+  }
+  markAsAttend() {
+    if (!this.attended) {
+      // Marca como "Atendido" solo si no estaba marcado
+      this.nextQueueService.markAsAttend().subscribe(() => {
+        this.attended = true;
+        this.notAttended = false; // Desmarca "No Atendido" si estaba marcado
+        console.log("Ticket marcado como Atendido");
+      });
+    }
+  }
+
+  markAsNotAttend() {
+    if (!this.notAttended) {
+      // Marca como "No Atendido" solo si no estaba marcado
+      this.nextQueueService.markAsNotAttend().subscribe(() => {
+        this.notAttended = true;
+        this.attended = false; // Desmarca "Atendido" si estaba marcado
+        console.log("Ticket marcado como No Atendido");
+      });
+    }
   }
 }

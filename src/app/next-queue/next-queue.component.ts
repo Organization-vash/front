@@ -23,6 +23,7 @@ export class NextQueueComponent implements OnInit {
   isLoading: boolean = false; // Para controlar el estado de carga
 
   ticket = {
+    ticketCodeId: '',
     ticketCode: '',
     serviceName: '',
     customerDocNumber: '',
@@ -98,6 +99,7 @@ export class NextQueueComponent implements OnInit {
     this.nextQueueService.getNextTicketInQueue(this.moduleId).subscribe(
       (response) => {
         this.ticket = {
+          ticketCodeId: response.ticketCodeId,
           ticketCode: response.ticketCode,
           serviceName: response.serviceName,
           customerDocNumber: response.customerDocNumber,

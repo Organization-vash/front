@@ -72,7 +72,7 @@
         </div>
 
 
-        <button class="finalize-button">FINALIZAR</button>
+        <button class="finalize-button" (click)="finalizarAtencion()">FINALIZAR</button>
       </div>
       <div class="services">
         <div class="services-list">
@@ -95,6 +95,9 @@
         <button class="survey-button">Realizar encuesta</button>
       </div>
     </div>
+  </div>
+  <div *ngIf="showMessagePopup" class="popup">
+    <p>{{ message }}</p>
   </div>
 </div>
 </body>

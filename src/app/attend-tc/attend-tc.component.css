@@ -196,3 +196,17 @@ li {
   margin-bottom: 5px;
   overflow-wrap: break-word;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 2px solid #2e5aac;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  text-align: center;
+  width: 300px;
+}

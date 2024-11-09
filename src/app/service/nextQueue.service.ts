@@ -37,4 +37,8 @@ export class nextQueueService {
   markAsNotAttend(): Observable<any> {
     return this.http.post(`${this.baseURL}/markAsNotAttend`, {});
   }
+
+  finalizarAtencion(id: number): Observable<any> {
+    return this.http.post<any>(`${this.baseURL}/${id}/finalize`, {});
+  }
 }

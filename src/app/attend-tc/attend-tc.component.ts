@@ -4,6 +4,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ServiceService} from "../service/service.service";
 import { nextQueueService } from "../service/nextQueue.service";
 import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-attend-tc',
@@ -24,16 +25,24 @@ import {FormsModule} from "@angular/forms";
 export class AttendTcComponent implements OnInit{
   ticketData: any;
   services: any[] = [];
-  chosenServices: any[] = [];
   successful: boolean = false;
   notSuccessful: boolean = false;
   attended: boolean = false;
   notAttended: boolean = false;
-  constructor(private ticketService: ticketAttendedTcComponent, private serviceService: ServiceService, private nextQueueService: nextQueueService) {}
+  showMessagePopup: boolean = false;
+  message: string = '';
+
+  constructor(
+    private ticketService: ticketAttendedTcComponent,
+    private serviceService: ServiceService,
+    private nextQueueService: nextQueueService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.ticketService.getTicketData().subscribe(data => {
       this.ticketData = data;
+      console.log("Datos del ticket:", this.ticketData);
     })
     this.obtenerService();
   }
@@ -80,6 +89,31 @@ export class AttendTcComponent implements OnInit{
         this.attended = false; // Desmarca "Atendido" si estaba marcado
         console.log("Ticket marcado como No Atendido");
       });
+    }
+  }
+
+  finalizarAtencion(){
+    const ticketId = this.ticketData.ticketCodeId;
+    if (this.ticketData && ticketId) {
+      this.nextQueueService.finalizarAtencion(ticketId).subscribe(
+        (response) => {
+          this.message = response.message;
+          this.showMessagePopup = true;
+          setTimeout(() => {
+            this.showMessagePopup = false;
+            this.router.navigate(['/nqc']);
+          }, 3000);
+        },
+        (error) => {
+          this.message = "Error al finalizar la atención";
+          this.showMessagePopup = true;
+          setTimeout(() => {
+            this.showMessagePopup = false;
+          }, 3000);
+        }
+      );
+    } else {
+      console.error("No se encontró el ID del ticket para finalizar la atención.");
     }
   }
 }

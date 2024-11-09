@@ -29,5 +29,11 @@ export class nextQueueService {
 
   markAsNotSuccessful(): Observable<any> {
     return this.http.post(`${this.baseURL}/markAsNotSuccessful`, {});
+  markAsAttend(): Observable<any> {
+    return this.http.post(`${this.baseURL}/markAsAttend`, {});
+  }
+
+  markAsNotAttend(): Observable<any> {
+    return this.http.post(`${this.baseURL}/markAsNotAttend`, {});
   }
 }

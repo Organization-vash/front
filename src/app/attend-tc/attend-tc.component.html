@@ -44,6 +44,8 @@
               name="attendance"
               [checked]="successful"
               (change)="markAsSuccessful()"> EXITOSO
+              [checked]="attended"
+              (change)="markAsAttend()"> ATENDIDO
           </label>
           <label>
             <input
@@ -51,6 +53,8 @@
               name="attendance"
               [checked]="notSuccessful"
               (change)="markAsNotSuccessful()"> NO EXITOSO
+              [checked]="notAttended"
+              (change)="markAsNotAttend()"> NO ATENDIDO
           </label>
         </div>
 

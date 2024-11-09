@@ -27,6 +27,8 @@ export class AttendTcComponent implements OnInit{
   chosenServices: any[] = [];
   successful: boolean = false;
   notSuccessful: boolean = false;
+  attended: boolean = false;
+  notAttended: boolean = false;
   constructor(private ticketService: ticketAttendedTcComponent, private serviceService: ServiceService, private nextQueueService: nextQueueService) {}
 
   ngOnInit(): void {
@@ -56,6 +58,24 @@ export class AttendTcComponent implements OnInit{
         this.notSuccessful = true;
         this.successful = false;
         console.log("Ticket marcado como No Satisfecho");
+  markAsAttend() {
+    if (!this.attended) {
+      // Marca como "Atendido" solo si no estaba marcado
+      this.nextQueueService.markAsAttend().subscribe(() => {
+        this.attended = true;
+        this.notAttended = false; // Desmarca "No Atendido" si estaba marcado
+        console.log("Ticket marcado como Atendido");
+      });
+    }
+  }
+
+  markAsNotAttend() {
+    if (!this.notAttended) {
+      // Marca como "No Atendido" solo si no estaba marcado
+      this.nextQueueService.markAsNotAttend().subscribe(() => {
+        this.notAttended = true;
+        this.attended = false; // Desmarca "Atendido" si estaba marcado
+        console.log("Ticket marcado como No Atendido");
       });
     }
   }

@@ -58,6 +58,9 @@ export class AttendTcComponent implements OnInit{
         this.notSuccessful = true;
         this.successful = false;
         console.log("Ticket marcado como No Satisfecho");
+      });
+    }
+  }
   markAsAttend() {
     if (!this.attended) {
       // Marca como "Atendido" solo si no estaba marcado

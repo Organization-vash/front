@@ -41,22 +41,36 @@
           <label>
             <input
               type="radio"
-              name="attendance"
-              [checked]="successful"
-              (change)="markAsSuccessful()"> EXITOSO
-              [checked]="attended"
-              (change)="markAsAttend()"> ATENDIDO
+              name="successStatus"
+            [checked]="successful"
+            (change)="markAsSuccessful()"> EXITOSO
           </label>
           <label>
             <input
               type="radio"
-              name="attendance"
+              name="successStatus"
               [checked]="notSuccessful"
               (change)="markAsNotSuccessful()"> NO EXITOSO
+          </label>
+        </div>
+
+        <div class="checkbox-section">
+          <label>
+            <input
+              type="radio"
+              name="attendanceStatus"
+            [checked]="attended"
+            (change)="markAsAttend()"> ATENDIDO
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="attendanceStatus"
               [checked]="notAttended"
               (change)="markAsNotAttend()"> NO ATENDIDO
           </label>
         </div>
+
 
         <button class="finalize-button">FINALIZAR</button>
       </div>

@@ -8,7 +8,8 @@ import {Observable} from "rxjs";
 export class nextQueueService {
   private baseURL = 'http://localhost:8080/api/v1/attention'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getNextTicketInQueue(moduleId: number): Observable<any> {
     return this.http.get<any>(`${this.baseURL}/next?moduleId=${moduleId}`);
@@ -21,6 +22,13 @@ export class nextQueueService {
   rejectTicket(): Observable<any> {
     return this.http.post(`${this.baseURL}/reject`, {});
   }
+
+  markAsSuccessful(): Observable<any> {
+    return this.http.post(`${this.baseURL}/markAsSuccessful`, {});
+  }
+
+  markAsNotSuccessful(): Observable<any> {
+    return this.http.post(`${this.baseURL}/markAsNotSuccessful`, {});
   markAsAttend(): Observable<any> {
     return this.http.post(`${this.baseURL}/markAsAttend`, {});
   }

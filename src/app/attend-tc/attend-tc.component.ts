@@ -25,6 +25,8 @@ export class AttendTcComponent implements OnInit{
   ticketData: any;
   services: any[] = [];
   chosenServices: any[] = [];
+  successful: boolean = false;
+  notSuccessful: boolean = false;
   attended: boolean = false;
   notAttended: boolean = false;
   constructor(private ticketService: ticketAttendedTcComponent, private serviceService: ServiceService, private nextQueueService: nextQueueService) {}
@@ -40,6 +42,22 @@ export class AttendTcComponent implements OnInit{
       this.services = dato;
     });
   }
+  markAsSuccessful() {
+    if (!this.successful) {
+      this.nextQueueService.markAsSuccessful().subscribe(() => {
+        this.successful = true;
+        this.notSuccessful = false;
+        console.log("Ticket marcado como Satisfecho");
+      });
+    }
+  }
+
+  markAsNotSuccessful() {
+    if (!this.notSuccessful) {
+      this.nextQueueService.markAsNotSuccessful().subscribe(() => {
+        this.notSuccessful = true;
+        this.successful = false;
+        console.log("Ticket marcado como No Satisfecho");
   markAsAttend() {
     if (!this.attended) {
       // Marca como "Atendido" solo si no estaba marcado

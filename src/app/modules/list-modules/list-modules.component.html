@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Lista de Módulos</h2>
+  <ul class="list-group">
+      <li *ngFor="let module of modules" class="list-group-item">
+          ID: {{ module.id }} - Estado: {{ module.moduleStatus }} - Creado: {{ module.createdAt | date:'short' }}
+      </li>
+  </ul>
+</div>

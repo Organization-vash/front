@@ -1,29 +1,35 @@
 <div class="container">
+  <h2>Detalles del Módulo</h2>
   <div>
-    <label for="moduleId">ModuleId:</label>
-    <input
-      type="number"
-      [(ngModel)]="moduleId"
-      (change)="fetchModuleStatus(moduleId)"
-      placeholder="Ingresa el modulo"
-    />
+    <p><strong>Nombre:</strong> {{ userName }}</p>
+    <p><strong>UserID:</strong> {{ userId }}</p>
+    <p><strong>Estado del Módulo:</strong> {{ moduleStatus }}</p>
+    <p><strong>Número del Módulo:</strong> {{ moduleId }}</p>
   </div>
-  <div>
-    <p>ModuleStatus: {{ moduleStatus }}</p>
 
-    <button (click)="mostrarModal()" [disabled]="moduleStatus !== 'ACTIVE'">Siguiente en cola</button>
+  <!-- Botones de cambiar estado -->
+  <div class="button-group">
+    <button class="btn btn-success" (click)="changeStatus('ACTIVE')" [disabled]="moduleStatus === 'ACTIVE'">Activar</button>
+    <button class="btn btn-warning" (click)="changeStatus('RECESS')" [disabled]="moduleStatus === 'RECESS'">Receso</button>
+    <button class="btn btn-danger" (click)="changeStatus('INACTIVE')" [disabled]="moduleStatus === 'INACTIVE'">Desactivar</button>
+  </div>
+  
+  <!-- Botón para Siguiente en Cola, ubicado en la esquina inferior derecha -->
+  <div class="next-button" style="position: fixed; bottom: 50px; right: 50px;">
+    <button class="btn btn-primary btn-next" (click)="mostrarModal()" [disabled]="moduleStatus !== 'ACTIVE'">Siguiente en cola</button>
+  </div>
 
-    <div *ngIf="mostrarPopup" class="modal-overlay">
-      <div class="modal-content">
-        <h2>SIGUIENTE EN COLA</h2>
-        <p><strong>Código: </strong> {{ ticket.ticketCode }} </p>
-        <p><strong>Servicio: </strong> {{ ticket.serviceName }} </p>
-        <p><strong>N° Documento: </strong> {{ ticket.customerDocNumber }} </p>
-        <p><strong>Nombre completo: </strong> {{ ticket.customerFullName }} </p>
-        <div class="modal-buttons">
-          <button (click)="aceptarTicket()">Aceptar</button>
-          <button (click)="rechazarTicket()">No Aceptar</button>
-        </div>
+  <!-- Popup de información de ticket -->
+  <div *ngIf="mostrarPopup" class="modal-overlay">
+    <div class="modal-content">
+      <h2>SIGUIENTE EN COLA</h2>
+      <p><strong>Código: </strong> {{ ticket.ticketCode }} </p>
+      <p><strong>Servicio: </strong> {{ ticket.serviceName }} </p>
+      <p><strong>N° Documento: </strong> {{ ticket.customerDocNumber }} </p>
+      <p><strong>Nombre completo: </strong> {{ ticket.customerFullName }} </p>
+      <div class="modal-buttons">
+        <button (click)="aceptarTicket()">Aceptar</button>
+        <button (click)="rechazarTicket()">No Aceptar</button>
       </div>
     </div>
   </div>
@@ -50,3 +56,4 @@
     </div>
   </div>
 </div>
+

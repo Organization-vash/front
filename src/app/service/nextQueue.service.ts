@@ -15,8 +15,8 @@ export class nextQueueService {
     return this.http.get<any>(`${this.baseURL}/next?moduleId=${moduleId}`);
   }
 
-  acceptTicket(): Observable<any> {
-    return this.http.post<any>(`${this.baseURL}/accept`, {});
+  acceptTicket(moduleId: number): Observable<any> {
+    return this.http.post<any>(`${this.baseURL}/accept?moduleId=${moduleId}`, {});
   }
 
   rejectTicket(): Observable<any> {

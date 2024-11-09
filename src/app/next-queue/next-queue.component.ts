@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { ModuleService, Module } from '../modules-service/module.service';
 import { nextQueueService } from '../service/nextQueue.service';
 import { Router } from '@angular/router';
+import {ticketAttendedTcComponent} from "../attend-tc/ticket-attend-tc.component";
 
 @Component({
   selector: 'app-next-queue',
@@ -28,13 +29,13 @@ export class NextQueueComponent implements OnInit {
     customerFullName: ''
   };
 
-  constructor(private router: Router, private moduleService: ModuleService, private nextQueueService: nextQueueService) {}
+  constructor(private router: Router, private moduleService: ModuleService, private nextQueueService: nextQueueService, private ticketAttendTc: ticketAttendedTcComponent) {}
 
   ngOnInit(): void {
     const loggedUser = JSON.parse(localStorage.getItem('loggedUser') || '{}');
     this.userId = loggedUser.userId || '';
     this.userName = loggedUser.name || '';
-    this.moduleId = loggedUser.moduleId; 
+    this.moduleId = loggedUser.moduleId;
     this.fetchModuleStatus(this.moduleId); // Cargar el estado del módulo
   }
 
@@ -111,7 +112,7 @@ export class NextQueueComponent implements OnInit {
   }
 
   aceptarTicket() {
-    this.nextQueueService.acceptTicket().subscribe(() => {
+    this.nextQueueService.acceptTicket(this.moduleId).subscribe(() => {
       this.mostrarPopup = false;
       this.showAcceptPopup = true;
       setTimeout(() => {
@@ -119,6 +120,7 @@ export class NextQueueComponent implements OnInit {
       }, 3000);
       console.log("Ticket aceptado");
       this.router.navigate(['/attention']);
+      this.ticketAttendTc.setTicketData(this.ticket);
     });
   }
 

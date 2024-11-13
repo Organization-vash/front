@@ -1,28 +1,32 @@
-import {InicioGcComponent} from "./inicio-gc/inicio-gc.component";
-import {FormularioCgComponent} from "./formulario-cg/formulario-cg.component";
-import {TicketComponent} from "./ticket-cg/ticket-cg.component";
+import { InicioGcComponent } from './pages/customer/inicio-gc/inicio-gc.component';
+import { FormularioCgComponent } from './pages/customer/formulario-cg/formulario-cg.component';
+import { TicketComponent } from './pages/customer/ticket-cg/ticket-cg.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ListaUsersComponent } from './lista-users/lista-users.component';
-import { CrearUserComponent } from './crear-user/crear-user.component';
-import { ActualizarUserComponent } from './actualizar-user/actualizar-user.component';
-import { DetalleUserComponent } from './detalle-user/detalle-user.component';
-import {ListaServicesComponent} from "./lista-services/lista-services.component";
-import {CrearServiceComponent} from "./crear-service/crear-service.component";
-import {DetalleServiceComponent} from "./detalle-service/detalle-service.component";
-import {ActualizarServiceComponent} from "./actualizar-service/actualizar-service.component";
-import {LoginComponent} from "./login/login.component";
-import {NextQueueComponent} from "./next-queue/next-queue.component";
-import {AttendTcComponent} from "./attend-tc/attend-tc.component";
-import { ListaModulesComponent } from './modules/list-modules/list-modules.component';
-import { CreateModuleComponent } from './modules/create-module/create-module.component';
+
+
+import { ActualizarServiceComponent } from './pages/admin/service/actualizar-service/actualizar-service.component';
+
+import { NextQueueComponent } from './pages/adviser/next-queue/next-queue.component';
+import { AttendTcComponent } from './pages/adviser/attend-tc/attend-tc.component';
+
+import { CreateModuleComponent } from './pages/admin/create-module/create-module.component';
+import { ActualizarUserComponent } from './pages/admin/actualizar-user/actualizar-user.component';
+import { CrearUserComponent } from './pages/admin/crear-user/crear-user.component';
+import { DetalleServiceComponent } from './pages/admin/service/detalle-service/detalle-service.component';
+import { DetalleUserComponent } from './pages/admin/detalle-user/detalle-user.component';
+import { ListaServicesComponent } from './pages/admin/service/lista-services/lista-services.component';
+import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { ListaModulesComponent } from './pages/admin/list-modules/list-modules.component';
+import { CrearServiceComponent } from './pages/admin/service/crear-service/crear-service.component';
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
   { path: 'formulario', component: FormularioCgComponent },
   { path: 'ticket', component: TicketComponent },
-  { path: 'nqc', component: NextQueueComponent},
-  { path: 'attention', component: AttendTcComponent},
+  { path: 'nqc', component: NextQueueComponent },
+  { path: 'attention', component: AttendTcComponent },
 
   // Rutas para login
   { path: 'login', component: LoginComponent },
@@ -48,6 +52,6 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

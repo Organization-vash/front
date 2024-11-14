@@ -140,23 +140,6 @@
                 </div>
             </div>
 
-            <!-- Campo Usuario -->
-            <div class="form-group">
-                <label>Nombre de Usuario:</label>
-                <input type="text" class="form-control"
-                    id="username"
-                    [(ngModel)]="user.username"
-                    name="username"
-                    required
-                    placeholder="Digite el nombre de usuario"
-                    #username="ngModel">
-
-                <!-- Mensajes de Error -->
-                <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
-                    <div *ngIf="username.errors?.['required']">Digite el nombre de usuario por favor</div>
-                </div>
-            </div>
-
             <!-- Campo Contraseña -->
             <div class="form-group">
                 <label>Contraseña:</label>

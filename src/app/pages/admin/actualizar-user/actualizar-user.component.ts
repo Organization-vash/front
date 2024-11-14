@@ -45,7 +45,7 @@ export class ActualizarUserComponent implements OnInit {
     this.router.navigate(['/users']);
     Swal.fire(
       'Usuario actualizado',
-      `El usaurio ${this.user.name} ha sido actualizado con éxito`,
+      `El usuario ${this.user.name} ha sido actualizado con éxito`,
       'success'
     );
   }

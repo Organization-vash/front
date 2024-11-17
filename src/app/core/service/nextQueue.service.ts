@@ -41,4 +41,9 @@ export class nextQueueService {
   finalizarAtencion(id: number): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/${id}/finalize`, {});
   }
+
+  registerSurvey(payload: { value: number }): Observable<any> {
+    return this.http.post(`${this.baseURL}/register-survey`, payload);
+  }
+
 }

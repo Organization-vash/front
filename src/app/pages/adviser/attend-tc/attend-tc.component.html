@@ -92,7 +92,7 @@
             </ul>
           </div>
         </div>
-        <button class="survey-button">Realizar encuesta</button>
+        <button class="survey-button" (click)="openSurveyPopup()">Realizar encuesta</button>
       </div>
     </div>
   </div>
@@ -101,4 +101,22 @@
   </div>
 </div>
 </body>
+
+
+<div *ngIf="showSurveyPopup" class="popup survey-popup">
+  <h4>Valora tu atención</h4>
+  <div class="survey-stars">
+    <i
+      *ngFor="let star of [1, 2, 3, 4, 5]"
+      class="fa-star"
+      [ngClass]="star <= selectedRating ? 'fas' : 'far'"
+      (click)="setRating(star)">
+    </i>
+  </div>
+  <button class="close-button" (click)="closeSurveyPopup()">Cerrar</button>
+</div>
+
+
 </html>
+
+

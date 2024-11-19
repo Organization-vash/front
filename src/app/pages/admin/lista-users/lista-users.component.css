@@ -124,3 +124,41 @@
 .table-entel .btn {
   margin-left: 10px;
 }
+
+
+/* Estilo para el formulario de filtros */
+.form-control {
+  border: 1px solid #0023a3; /* Azul Entel */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: none; /* Sin sombra */
+}
+
+.form-control:focus {
+  border-color: #ff6600; /* Naranja Entel al enfocar */
+  box-shadow: 0 0 0 0.2rem rgba(255, 102, 0, 0.25); /* Sombra naranja al enfocar */
+}
+
+/* Estilo para los selectores */
+.form-select {
+  border: 1px solid #0023a3; /* Azul Entel */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.form-select:focus {
+  border-color: #ff6600; /* Naranja Entel al enfocar */
+}
+
+/* Botón Limpiar Filtros */
+.btn-outline-secondary {
+  background-color: white; /* Fondo blanco */
+  color: #0023a3; /* Texto azul Entel */
+  border: 1px solid #0023a3; /* Borde azul Entel */
+  border-radius: 5px;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #0023a3; /* Fondo azul Entel al pasar el mouse */
+  color: white; /* Texto blanco al pasar el mouse */
+}
+
+

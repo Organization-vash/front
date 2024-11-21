@@ -18,6 +18,6 @@ export class TicketService {
     return this.http.post(url, {});
   }
   searchTickets(searchTerm: string): Observable<TicketCode[]> {
-    return this.http.get<TicketCode[]>(`${this.apiUrl}/search?searchCode=${searchTerm}`);
+    return this.http.get<TicketCode[]>(`${this.apiUrl}/search?code=${searchTerm}`);
   }
 }

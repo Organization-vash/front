@@ -16,12 +16,26 @@
           <tr>
             <th>Código del Ticket</th>
             <th>Fecha de Creación</th>
+            <th>Módulo</th>
+            <th>Asesor</th>
+            <th>Cliente</th>
+            <th>Tiempo</th>
+            <th>Estado</th>
+            <th>Éxito</th>
+            <th>Encuesta</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let ticket of tickets">
-            <td>{{ ticket.code }}</td>
+            <td>{{ ticket.ticketCode }}</td>
             <td>{{ ticket.created | date: 'short' }}</td>
+            <td>{{ ticket.moduleName }}</td>
+            <td>{{ ticket.advisorName }}</td>
+            <td>{{ ticket.customerName }}</td>
+            <td>{{ ticket.attentionTime | date: 'short' }}</td>
+            <td>{{ ticket.attentionStatus }}</td>
+            <td>{{ ticket.successStatus }}</td>
+            <td>{{ ticket.surveyDetails }}</td>
           </tr>
         </tbody>
       </table>

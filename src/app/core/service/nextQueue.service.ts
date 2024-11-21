@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import { TicketHistory } from "../../shared/models/ticket-history.model";
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,9 @@ export class nextQueueService {
 
   finalizarAtencion(id: number): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/${id}/finalize`, {});
+  }
+
+  getTodayTickets(moduleId: number): Observable<TicketHistory[]> {
+    return this.http.get<TicketHistory[]>(`${this.baseURL}/getHistory?moduleId=${moduleId}`);
   }
 }

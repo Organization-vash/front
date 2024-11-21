@@ -1,0 +1,33 @@
+<div class="search-container">
+    <h2>Buscar Tickets</h2>
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Ingrese el código del ticket"
+        [(ngModel)]="searchTerm"
+        (keydown.enter)="searchTickets()"
+      />
+      <button (click)="searchTickets()">Buscar</button>
+    </div>
+  
+    <div class="results-container">
+      <table *ngIf="tickets.length > 0">
+        <thead>
+          <tr>
+            <th>Código del Ticket</th>
+            <th>Fecha de Creación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of tickets">
+            <td>{{ ticket.code }}</td>
+            <td>{{ ticket.created | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <p *ngIf="tickets.length === 0 && searchPerformed" class="no-results">
+        No se encontraron resultados para "{{ searchTerm }}".
+      </p>
+    </div>
+  </div>

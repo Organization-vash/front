@@ -20,6 +20,7 @@ import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.compo
 import { LoginComponent } from './pages/auth/login/login.component';
 import { ListaModulesComponent } from './pages/admin/list-modules/list-modules.component';
 import { CrearServiceComponent } from './pages/admin/service/crear-service/crear-service.component';
+import { SearchCodeComponent } from './pages/admin/search-code/search-code.component';
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path: 'crear-service', component: CrearServiceComponent },
   { path: 'detalle-service/:id', component: DetalleServiceComponent },
   { path: 'actualizar-service/:id', component: ActualizarServiceComponent },
+  { path: 'search-code', component: SearchCodeComponent },
 
   // Rutas para usuarios
   { path: 'users', component: ListaUsersComponent },

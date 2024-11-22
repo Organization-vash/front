@@ -103,7 +103,12 @@ Math = Math; // Exponer Math para usarlo en el template
         alert("Quedan 5 minutos para finalizar el tiempo máximo.");
       }
   
-      // Notificar cuando se pase del tiempo límite
+      // Notificar si se supera el promedio de tiempo de atención (10 minutos)
+      if (this.timeLeft === 600) { // 10 minutos pasados
+        alert("Promedio de tiempo superado.");
+      }
+  
+      // Notificar cuando se pase del tiempo límite (0 segundos)
       if (this.timeLeft <= 0 && !this.timeLimitPassed) {
         this.timeLimitPassed = true;
         this.notifyTimeLimitPassed();
@@ -113,6 +118,7 @@ Math = Math; // Exponer Math para usarlo en el template
       }
     }, 1000); // Intervalo de 1 segundo
   }
+  
   
   notifyTimeLimitPassed(): void {
     alert("Límite de tiempo pasado. Por favor, finalice la atención.");
@@ -131,12 +137,21 @@ Math = Math; // Exponer Math para usarlo en el template
   
 
   finalizarAtencion() {
-    const ticketId = this.ticketData.ticketCodeId;
+    // Verificar si no ha pasado al menos un minuto
+    if (this.timeLeft > 1140) { // Tiempo inicial es 1200s (20min). 1200 - 1140 = 60s (1min)
+      alert("No se puede terminar la atención antes de 1 minuto.");
+      return;
+    }
+  
+    const ticketId = this.ticketData?.ticketCodeId;
     if (this.ticketData && ticketId) {
       this.nextQueueService.finalizarAtencion(ticketId).subscribe(
         (response) => {
           this.message = response.message;
           this.showMessagePopup = true;
+  
+          this.stopTimer();
+  
           setTimeout(() => {
             this.showMessagePopup = false;
             this.router.navigate(['/nqc']);
@@ -145,15 +160,15 @@ Math = Math; // Exponer Math para usarlo en el template
         (error) => {
           this.message = 'Error al finalizar la atención';
           this.showMessagePopup = true;
+  
           setTimeout(() => {
             this.showMessagePopup = false;
           }, 3000);
         }
       );
     } else {
-      console.error(
-        'No se encontró el ID del ticket para finalizar la atención.'
-      );
+      console.error('No se encontró el ID del ticket para finalizar la atención.');
     }
   }
+  
 }

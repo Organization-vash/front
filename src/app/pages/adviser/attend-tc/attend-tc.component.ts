@@ -1,15 +1,16 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ticketAttendedTcComponent } from './ticket-attend-tc.component';
-import { NgForOf, NgIf } from '@angular/common';
 import { ServiceService } from '../../../core/service/service.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DatePipe, NgForOf, NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-attend-tc',
   standalone: true,
-  imports: [NgIf, NgForOf, FormsModule],
+  imports: [NgIf, NgForOf, FormsModule,DatePipe],
   templateUrl: './attend-tc.component.html',
   styleUrl: './attend-tc.component.css',
 })
@@ -25,6 +26,12 @@ export class AttendTcComponent implements OnInit {
   notAttended: boolean = false;
   showMessagePopup: boolean = false;
   message: string = '';
+  timeLeft: number = 1200; // Tiempo total en segundos (20 minutos)
+timeWarning: boolean = false; // Indica si faltan 5 minutos
+timeLimitPassed: boolean = false; // Indica si el tiempo límite fue excedido
+timerInterval: any; // Intervalo del temporizador
+Math = Math; // Exponer Math para usarlo en el template
+
 
   constructor(
     private ticketService: ticketAttendedTcComponent,
@@ -39,6 +46,7 @@ export class AttendTcComponent implements OnInit {
       console.log('Datos del ticket:', this.ticketData);
     });
     this.obtenerService();
+    this.startTimer();
   }
   private obtenerService(): void {
     this.serviceService.obtenerListaDeServicios().subscribe((dato) => {
@@ -85,6 +93,42 @@ export class AttendTcComponent implements OnInit {
       });
     }
   }
+  startTimer(): void {
+    this.timerInterval = setInterval(() => {
+      this.timeLeft--;
+  
+      // Notificar cuando queden 5 minutos
+      if (this.timeLeft === 300 && !this.timeWarning) {
+        this.timeWarning = true;
+        alert("Quedan 5 minutos para finalizar el tiempo máximo.");
+      }
+  
+      // Notificar cuando se pase del tiempo límite
+      if (this.timeLeft <= 0 && !this.timeLimitPassed) {
+        this.timeLimitPassed = true;
+        this.notifyTimeLimitPassed();
+      } else if (this.timeLimitPassed && this.timeLeft % 120 === 0) {
+        // Notificación repetitiva cada 2 minutos después del límite
+        this.notifyTimeLimitPassed();
+      }
+    }, 1000); // Intervalo de 1 segundo
+  }
+  
+  notifyTimeLimitPassed(): void {
+    alert("Límite de tiempo pasado. Por favor, finalice la atención.");
+  }
+  
+  stopTimer(): void {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
+  
+  ngOnDestroy(): void {
+    // Detener el temporizador al destruir el componente
+    this.stopTimer();
+  }
+  
 
   finalizarAtencion() {
     const ticketId = this.ticketData.ticketCodeId;

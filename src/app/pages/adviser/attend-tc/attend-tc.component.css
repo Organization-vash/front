@@ -7,27 +7,22 @@ body {
   margin: 45px;
   padding: 0;
   height: 100%;
+  align-items: center; /* Centrar verticalmente */
   box-sizing: border-box;
 }
 
 .container {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 1200px;
+  flex-direction: column; /* Organiza el contenido en columnas */
+  width: 90%; /* Ajusta el ancho al tamaño de la pantalla */
+  max-width: 1200px; /* Define un tamaño máximo */
   background-color: white;
   border: 2px solid #d3d3d3;
-  margin: 0;
-  padding: 0;
+  border-radius: 10px; /* Opcional: Bordes redondeados */
+  padding: 20px;
   box-sizing: border-box;
-}
-
-.sidebar {
-  width: 25%;
-  background-color: #eaeaea;
-  padding: 15px;
-  margin: 0;
-  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Opcional: Sombra suave */
+  margin-top: 30px;
 }
 
 .sidebar h3 {
@@ -63,10 +58,11 @@ body {
 }
 
 .main-content {
-  width: 75%;
+  width: 100%;
   padding: 15px;
   margin: 0;
   box-sizing: border-box;
+  
 }
 
 .header {

@@ -20,6 +20,7 @@ import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.compo
 import { LoginComponent } from './pages/auth/login/login.component';
 import { ListaModulesComponent } from './pages/admin/list-modules/list-modules.component';
 import { CrearServiceComponent } from './pages/admin/service/crear-service/crear-service.component';
+import { ChatBoxComponent } from './pages/customer/chat-box/chat-box.component';
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -27,9 +28,9 @@ export const routes: Routes = [
   { path: 'ticket', component: TicketComponent },
   { path: 'nqc', component: NextQueueComponent },
   { path: 'attention', component: AttendTcComponent },
-
+  
   // Rutas para login
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },// Ruta para el chat
 
   // Rutas para usuarios
   { path: 'services', component: ListaServicesComponent },
@@ -47,6 +48,7 @@ export const routes: Routes = [
   { path: 'list-modules', component: ListaModulesComponent },
   { path: 'create-module', component: CreateModuleComponent },
   // Ruta comodín para redirigir si no encuentra otra ruta
+  { path: 'chat', component: ChatBoxComponent }, // Ruta para el Chat Box
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

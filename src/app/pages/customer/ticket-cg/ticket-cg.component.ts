@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {CommonModule} from "@angular/common";
+import { ChatBoxComponent } from '../chat-box/chat-box.component';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket-cg.component.html',
   standalone: true,
   styleUrls: ['./ticket-cg.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, ChatBoxComponent]
 })
 export class TicketComponent {
   codigo: string;

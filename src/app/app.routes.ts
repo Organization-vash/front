@@ -21,6 +21,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { ListaModulesComponent } from './pages/admin/list-modules/list-modules.component';
 import { CrearServiceComponent } from './pages/admin/service/crear-service/crear-service.component';
 import { ChatBoxComponent } from './pages/customer/chat-box/chat-box.component';
+import { QrCodeComponent } from './qr/qr.component';
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -49,6 +50,7 @@ export const routes: Routes = [
   { path: 'create-module', component: CreateModuleComponent },
   // Ruta comodín para redirigir si no encuentra otra ruta
   { path: 'chat', component: ChatBoxComponent }, // Ruta para el Chat Box
+  { path: 'qr-code', component: QrCodeComponent }, // Ruta del QR
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

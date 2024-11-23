@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@stomp/stompjs": "^7.0.0",
+    "angularx-qrcode": "^18.0.2",
     "bootstrap": "^5.3.3",
     "gestion-servicio-frontend": "file:",
     "rxjs": "~7.8.0",

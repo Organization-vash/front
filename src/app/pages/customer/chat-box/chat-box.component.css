@@ -91,3 +91,13 @@
 .input-area button:hover {
   background-color: #003d7e; /* Azul oscuro */
 }
+
+.chat-box .bot-avatar {
+  margin-right: 10px;
+}
+
+.chat-box .bot-avatar img {
+  width: 40px; /* Ajusta el tamaño según tu diseño */
+  height: 40px;
+  border-radius: 50%; /* Para hacerla circular */
+}

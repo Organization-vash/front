@@ -1,8 +1,13 @@
 <div class="chat-box">
   <div class="header">Chat de Ayuda</div>
 
-  <div class="messages">
+  <div class="messages" #messagesContainer>
     <div *ngFor="let message of messages" class="message" [ngClass]="message.sender">
+      <!-- Agregar imagen si el mensaje es del bot -->
+      <div *ngIf="message.sender === 'bot'" class="bot-avatar">
+        <img src="chat-box.jpg" alt="Bot" />
+      </div>
+
       <p>{{ message.text }}</p>
 
       <!-- Mostrar opciones si están disponibles -->
@@ -19,4 +24,3 @@
     <button (click)="sendMessage()">Enviar</button>
   </div>
 </div>
-

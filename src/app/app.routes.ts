@@ -4,7 +4,6 @@ import { TicketComponent } from './pages/customer/ticket-cg/ticket-cg.component'
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-
 import { ActualizarServiceComponent } from './pages/admin/service/actualizar-service/actualizar-service.component';
 
 import { NextQueueComponent } from './pages/adviser/next-queue/next-queue.component';
@@ -21,7 +20,10 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { ListaModulesComponent } from './pages/admin/list-modules/list-modules.component';
 import { CrearServiceComponent } from './pages/admin/service/crear-service/crear-service.component';
 import { ChatBoxComponent } from './pages/customer/chat-box/chat-box.component';
-import { QrCodeComponent } from './qr/qr.component';
+import { QrCodeComponent } from './pages/customer/qr/qr.component';
+import { AgencyComponent } from './pages/admin/agency/list-created-agency/agencies-crud.component';
+import { DetalleAgencyComponent } from './pages/admin/agency/detalle-agency/detalle-agency.component';
+import { ActualizarAgencyComponent } from './pages/admin/agency/actualizar-agency/actualizar-agency.component';
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -29,11 +31,11 @@ export const routes: Routes = [
   { path: 'ticket', component: TicketComponent },
   { path: 'nqc', component: NextQueueComponent },
   { path: 'attention', component: AttendTcComponent },
-  
-  // Rutas para login
-  { path: 'login', component: LoginComponent },// Ruta para el chat
 
-  // Rutas para usuarios
+  // Rutas para login
+  { path: 'login', component: LoginComponent }, // Ruta para el chat
+
+  // Rutas para servicios
   { path: 'services', component: ListaServicesComponent },
   { path: 'crear-service', component: CrearServiceComponent },
   { path: 'detalle-service/:id', component: DetalleServiceComponent },
@@ -48,9 +50,19 @@ export const routes: Routes = [
   // Rutas para lo de modulos
   { path: 'list-modules', component: ListaModulesComponent },
   { path: 'create-module', component: CreateModuleComponent },
+
+  // Ruta para el Chat Box
+  { path: 'chat', component: ChatBoxComponent },
+
+  // Ruta del QR
+  { path: 'qr-code', component: QrCodeComponent },
+
+  // Rutas para agencias
+  { path: 'agency', component: AgencyComponent },
+  { path: 'detalle-agency/:id', component: DetalleAgencyComponent },
+  { path: 'actualizar-agency/:id', component: ActualizarAgencyComponent },
+
   // Ruta comodín para redirigir si no encuentra otra ruta
-  { path: 'chat', component: ChatBoxComponent }, // Ruta para el Chat Box
-  { path: 'qr-code', component: QrCodeComponent }, // Ruta del QR
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

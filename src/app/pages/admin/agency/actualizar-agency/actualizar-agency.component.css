@@ -1,0 +1,37 @@
+/* Encabezado del formulario */
+.form-header {
+    background-color: #0023A3; /* Azul Entel */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    margin-top: 20px; /* Espacio entre el navbar y el título del formulario */
+  }
+  
+  /* Contenedor del formulario */
+  .form-container {
+    border: 1px solid #0023A3; /* Bordes azul Entel */
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  /* Estilo para los inputs */
+  .form-control {
+    border: 2px solid #FF6600; /* Naranja Entel */
+    border-radius: 5px;
+  }
+  
+  /* Botón Guardar */
+  .btn-entel {
+    background-color: #FF6600; /* Naranja Entel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+  }
+  
+  .btn-entel:disabled {
+    background-color: #ffb380; /* Naranja claro para botón deshabilitado */
+    color: white;
+  }
+  

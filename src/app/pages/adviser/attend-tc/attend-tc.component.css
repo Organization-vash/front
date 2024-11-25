@@ -210,3 +210,56 @@ li {
   text-align: center;
   width: 300px;
 }
+
+
+.survey-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 90%; /* Ajusta a un 90% del ancho de la pantalla */
+  max-width: 400px; /* Máximo 400px */
+  height: auto; /* Altura automática para ajustarse al contenido */
+  padding: 30px; /* Espaciado interno */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra */
+  z-index: 1000;
+  border-radius: 12px; /* Bordes redondeados */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Espacio uniforme entre elementos */
+}
+.survey-stars {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espaciado entre las estrellas */
+  margin: 20px 0; /* Margen entre las estrellas y otros elementos */
+}
+.fa-star {
+  font-size: 45px; /* Tamaño de las estrellas */
+  cursor: pointer;
+  color: #ccc; /* Color de estrellas inactivas */
+  transition: color 0.3s, transform 0.2s; /* Animación al pasar el mouse */
+}
+.fa-star.fas {
+  color: #ffd700; /* Color de estrellas activas */
+}
+.fa-star:hover {
+  color: #ffc107; /* Color al pasar el mouse */
+  transform: scale(1.2); /* Efecto de zoom */
+}
+.close-button {
+  margin-top: 20px;
+  padding: 12px 24px; /* Tamaño del botón */
+  border: none;
+  background: #ff9800;
+  color: white;
+  font-size: 18px; /* Tamaño del texto */
+  border-radius: 6px;
+  cursor: pointer;
+}
+.close-button:hover {
+  background: darkorange;
+}

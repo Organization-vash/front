@@ -38,6 +38,10 @@ export class nextQueueService {
     return this.http.post(`${this.baseURL}/markAsNotAttend`, {});
   }
 
+  registerSurvey(payload: { value: number }): Observable<any> {
+    return this.http.post(`${this.baseURL}/register-survey`, payload);
+  }
+
   finalizarAtencion(id: number): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/${id}/finalize`, {});
   }

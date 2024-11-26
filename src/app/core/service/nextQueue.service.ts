@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -16,8 +16,20 @@ export class nextQueueService {
   }
 
   acceptTicket(moduleId: number): Observable<any> {
-    return this.http.post<any>(`${this.baseURL}/accept?moduleId=${moduleId}`, {});
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser') || '{}');
+    const username = loggedUser.username || ''; // Extrae el nombre de usuario
+
+    // Validación adicional para evitar solicitudes con username vacío
+    if (!username) {
+      throw new Error('El usuario no está autenticado o el nombre no está disponible');
+    }
+
+    const headers = new HttpHeaders({ username });
+    console.log('Headers enviados:', { username }); // Para depuración
+
+    return this.http.post<any>(`${this.baseURL}/accept?moduleId=${moduleId}`, {}, { headers });
   }
+
 
   rejectTicket(): Observable<any> {
     return this.http.post(`${this.baseURL}/reject`, {});

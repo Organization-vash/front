@@ -34,6 +34,7 @@ export class LoginComponent {
             JSON.stringify({
               userId: userId || '', // Si no hay ID, almacena cadena vacía
               name: userName || '', // Si no hay nombre, almacena cadena vacía
+              username: response.username || '',
               moduleId: userModuleId,
               role: userRole,
             })

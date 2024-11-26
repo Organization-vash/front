@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Survey Report</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Adviser Username</th>
+      <th>Average Value</th>
+      <th>Quantity</th>
+      <th>Consult Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let report of surveyReports">
+      <td>{{ report.adviserUsername }}</td>
+      <td>{{ report.averageValue }}</td>
+      <td>{{ report.quantity }}</td>
+      <td>{{ report.consultDate }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

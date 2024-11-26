@@ -51,6 +51,9 @@ export class LoginComponent {
           if (userRole === 'ADVISER') {
             console.log('Redirigiendo a /nqc');
             this.router.navigate(['/nqc']);
+          }else if (userRole === 'SUPERVISOR') {
+            console.log('Redirigiendo a /survey-report');
+            this.router.navigate(['/survey-report']);
           }
         } else {
           this.error = response.message; // Manejo de error

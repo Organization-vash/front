@@ -76,19 +76,29 @@
         <div class="services-list">
           <div class="service-box">
             <h4>SERVICIOS ELEGIDOS</h4>
-            <div class="service-item">
-              <p>{{ ticketData.serviceName }} <button>-</button> </p>
-            </div>
-          </div>
-
-          <div class="service-box">
-            <h4>SERVICIOS</h4>
             <ul>
-              <li *ngFor="let service of services">
-                <span>{{ service.name }} <button class="add-button">+</button> </span>
+              <li *ngFor="let service of selectedServices">
+                <span>
+                  {{ service.name }}
+                  <button (click)="removeService(service)">-</button> <!-- Botón para eliminar -->
+                </span>
               </li>
             </ul>
           </div>
+          
+
+          <div class="service-box">
+            <h4>SERVICIOS DISPONIBLES</h4>
+            <ul>
+              <li *ngFor="let service of availableServices">
+                <span>
+                  {{ service.name }}
+                  <button (click)="addService(service)">+</button> <!-- Botón para agregar -->
+                </span>
+              </li>
+            </ul>
+          </div>
+          
         </div>
         <button class="survey-button">Realizar encuesta</button>
       </div>

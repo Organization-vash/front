@@ -1,7 +1,9 @@
+
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ticketAttendedTcComponent } from './ticket-attend-tc.component';
 import { ServiceService } from '../../../core/service/service.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
+import {AddRemoveService } from '../../../core/service/addRemove.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe, NgForOf, NgIf } from '@angular/common';
@@ -20,6 +22,9 @@ import { DatePipe, NgForOf, NgIf } from '@angular/common';
 export class AttendTcComponent implements OnInit {
   ticketData: any;
   services: any[] = [];
+  availableServices: any[] = []; // Lista de servicios disponibles
+selectedServices: any[] = []; // Lista de servicios seleccionados
+
   successful: boolean = false;
   notSuccessful: boolean = false;
   attended: boolean = false;
@@ -31,28 +36,84 @@ timeWarning: boolean = false; // Indica si faltan 5 minutos
 timeLimitPassed: boolean = false; // Indica si el tiempo límite fue excedido
 timerInterval: any; // Intervalo del temporizador
 Math = Math; // Exponer Math para usarlo en el template
+attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
 
 
   constructor(
     private ticketService: ticketAttendedTcComponent,
     private serviceService: ServiceService,
     private nextQueueService: nextQueueService,
+    private addRemoveService: AddRemoveService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.ticketService.getTicketData().subscribe((data) => {
       this.ticketData = data;
+      this.attentionId = data?.attentionId || null; // Extraer attentionId
       console.log('Datos del ticket:', this.ticketData);
-    });
+    
     this.obtenerService();
+  });
     this.startTimer();
   }
   private obtenerService(): void {
-    this.serviceService.obtenerListaDeServicios().subscribe((dato) => {
-      this.services = dato;
+    this.serviceService.obtenerListaDeServicios().subscribe((services) => {
+      // Verifica si el ticketData tiene servicios seleccionados
+      this.selectedServices = this.ticketData?.selectedServices || [
+        { id: this.ticketData.serviceId, name: this.ticketData.serviceName },
+      ];
+  
+      // Filtra los servicios disponibles excluyendo los seleccionados
+      this.availableServices = services.filter(
+        (service) =>
+          !this.selectedServices.some((selected) => selected.id === service.id)
+      );
+  
+      // Debugging: Verifica qué datos están cargando
+      console.log('Servicios seleccionados:', this.selectedServices);
+      console.log('Servicios disponibles:', this.availableServices);
     });
   }
+  
+  
+  addService(service: any): void {
+    if (!this.attentionId) {
+      console.error('Attention ID no está disponible.');
+      return;
+    }
+  
+    this.addRemoveService.addServiceToAttention(this.attentionId, service.id).subscribe(
+      () => {
+        console.log('Servicio agregado:', service);
+        this.selectedServices.push(service);
+        this.availableServices = this.availableServices.filter((s) => s.id !== service.id);
+      },
+      (error) => {
+        console.error('Error al agregar servicio:', error);
+      }
+    );
+  }
+  
+  removeService(service: any): void {
+    if (!this.attentionId) {
+      console.error('Attention ID no está disponible.');
+      return;
+    }
+  
+    this.addRemoveService.removeServiceFromAttention(this.attentionId, service.id).subscribe(
+      () => {
+        console.log('Servicio eliminado:', service);
+        this.availableServices.push(service);
+        this.selectedServices = this.selectedServices.filter((s) => s.id !== service.id);
+      },
+      (error) => {
+        console.error('Error al eliminar servicio:', error);
+      }
+    );
+  }
+  
+
   markAsSuccessful() {
     if (!this.successful) {
       this.nextQueueService.markAsSuccessful().subscribe(() => {

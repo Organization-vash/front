@@ -123,17 +123,29 @@ export class NextQueueComponent implements OnInit {
   }
 
   aceptarTicket() {
-    this.nextQueueService.acceptTicket(this.moduleId).subscribe(() => {
-      this.mostrarPopup = false;
-      this.showAcceptPopup = true;
-      setTimeout(() => {
-        this.showAcceptPopup = false;
-      }, 3000);
-      console.log('Ticket aceptado');
-      this.router.navigate(['/attention']);
-      this.ticketAttendTc.setTicketData(this.ticket);
-    });
+    this.nextQueueService.acceptTicket(this.moduleId).subscribe(
+      (response) => {
+        this.mostrarPopup = false;
+        this.showAcceptPopup = true;
+        setTimeout(() => {
+          this.showAcceptPopup = false;
+        }, 3000);
+        console.log('Ticket aceptado');
+        
+        // Agregar attentionId al ticket
+        this.ticketAttendTc.setTicketData({
+          ...this.ticket, // Mantén los datos actuales del ticket
+          attentionId: response.attentionId, // Añade el attentionId de la respuesta
+        });
+        
+        this.router.navigate(['/attention']);
+      },
+      (error) => {
+        console.error('Error al aceptar el ticket:', error);
+      }
+    );
   }
+  
 
   rechazarTicket() {
     this.nextQueueService.rejectTicket().subscribe(() => {

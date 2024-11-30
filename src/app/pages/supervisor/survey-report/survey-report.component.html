@@ -1,5 +1,6 @@
-<div class="container">
-  <h2>Survey Report</h2>
+<div id="reportSection" class="container">
+  <h2>Reporte de Encuestas</h2>
+ <button (click)="exportToPDF()" class="btn btn-primary">Exportar a PDF</button>
   <table class="table">
     <thead>
     <tr>
@@ -18,4 +19,33 @@
     </tr>
     </tbody>
   </table>
+
+  <h2>Gráfico de barras: Promedio de calificación vs Asesor</h2>
+  <ngx-charts-bar-vertical
+    [view]="[700, 400]"
+    [scheme]="colorScheme"
+    [results]="barChartData"
+    [gradient]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+    [legend]="false"
+    [showXAxisLabel]="true"
+    [showYAxisLabel]="true"
+    [xAxisLabel]="'Asesor (Nombre de usuario)'"
+    [yAxisLabel]="'Promedio de calificación'"
+    [animations]="false">
+  </ngx-charts-bar-vertical>
+
+  <h2>Gráfico Circular: Número de encuestas vs Asesor</h2>
+  <ngx-charts-pie-chart
+    [view]="[700, 400]"
+    [scheme]="colorScheme"
+    [results]="pieChartData"
+    [gradient]="true"
+    [legend]="true"
+    [labels]="true"
+    [doughnut]="true"
+    [animations]="false">
+  </ngx-charts-pie-chart>
+
 </div>

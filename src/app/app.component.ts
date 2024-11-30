@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ListaServicesComponent } from './pages/admin/service/lista-services/lista-services.component';
 import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.component';
+import {GoogleChartsModule} from "angular-google-charts";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.compo
     CommonModule,
     RouterOutlet,
     RouterModule,
+    GoogleChartsModule,
   ],
 
   templateUrl: './app.component.html',

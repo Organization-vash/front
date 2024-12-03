@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ticketAttendedTcComponent } from './ticket-attend-tc.component';
-import {DatePipe,  NgClass, NgForOf, NgIf, NgClass} from '@angular/common';
+import {DatePipe,  NgClass, NgForOf, NgIf} from '@angular/common';
 import { ServiceService } from '../../../core/service/service.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
 import { FormsModule } from '@angular/forms';

@@ -1,77 +1,41 @@
-/* survey-report.component.css */
 
-/* Estilo para centrar los gráficos */
+
+
 .container {
   text-align: center;
-  margin-top: 20px;
-}
-
-/* Centrar específicamente los gráficos */
-ngx-charts-bar-vertical,
-ngx-charts-pie-chart {
-  display: inline-block;
   margin: 20px auto;
 }
 
-/* Estilo de la tabla */
-table {
-  width: 100%;
-  margin: 20px auto;
+.table {
+  margin: 0 auto;
+  width: 80%;
   border-collapse: collapse;
-  text-align: left;
 }
 
-thead {
-  background-color: #f8f9fa;
-  font-weight: bold;
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
-th,
-td {
-  padding: 12px 15px;
-  border: 1px solid #dee2e6;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tbody tr:hover {
-  background-color: #e9ecef;
-}
-
-/* Encabezados */
-h2 {
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  color: #343a40;
-  text-align: center;
-}
-
-/* Adaptación a pantallas pequeñas */
-@media (max-width: 768px) {
-  ngx-charts-bar-vertical,
-  ngx-charts-pie-chart {
-    width: 100%;
-  }
-
-  table {
-    font-size: 0.9rem;
-  }
-}
-ngx-charts-bar-vertical, ngx-charts-pie-chart {
-  display: inline-block;
-  background-color: white; /* Asegura un fondo blanco */
-  padding: 10px;
-}
-
-.btn-submit {
+.table th {
   background-color: #f58220;
   color: white;
-  border: none;
+}
+
+img {
+  width: 70%;
+  margin: 20px 0;
+}
+
+.btn-primary {
+  background-color: #f58220;
+  color: white;
   padding: 10px 20px;
-  border-radius: 5px;
+  border: none;
   cursor: pointer;
-  width: 100%;
-  font-size: 1.2em;
+}
+
+.btn-primary:hover {
+  background-color: #f58220;
 }

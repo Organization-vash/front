@@ -13,4 +13,17 @@ export class SurveyReportService {
   getSurveyReport(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
+  getPieChart(): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/pie-chart`, { responseType: 'blob' });
+  }
+
+  getBarChart(): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/bar-chart`, { responseType: 'blob' });
+  }
+
+  downloadExcelReport() {
+    return this.http.get(`${this.baseUrl}/download-excel`, {
+      responseType: 'blob',
+    });
+  }
 }

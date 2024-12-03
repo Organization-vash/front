@@ -1,0 +1,43 @@
+.dashboard-container {
+    display: flex;
+    height: 100%;
+  }
+  
+  .left-panel {
+    width: 50%;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
+  
+  .right-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-section {
+    flex: 0 0 30%;
+    padding: 10px;
+    background: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s;
+  }
+  
+  .bottom-section {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .blinking {
+    animation: blink 0.5s 3 alternate;
+  }
+  
+  @keyframes blink {
+    0% {
+      background-color: orange;
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+  

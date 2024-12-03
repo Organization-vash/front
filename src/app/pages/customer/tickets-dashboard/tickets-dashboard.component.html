@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="tickets-dashboard.component.css">
+<div class="dashboard-container">
+    <!-- Lado Izquierdo -->
+    <div class="left-panel">
+      <h3>Tickets en Atención</h3>
+      <ul>
+        <li *ngFor="let ticket of attendingTickets">
+          <strong>{{ ticket.code }}</strong> - Módulo: {{ ticket.module }}
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Lado Derecho -->
+    <div class="right-panel">
+      <!-- Parte Superior -->
+      <div class="top-section" [class.blinking]="isBlinking">
+        <h3>Ticket Llamado</h3>
+        <p *ngIf="currentTicket">Ticket: {{ currentTicket.code }}</p>
+        <p *ngIf="!currentTicket">Esperando ticket...</p>
+      </div>
+  
+      <!-- Parte Inferior -->
+      <div class="bottom-section">
+        <!-- aca pones tu videito checho-->
+      </div>
+    </div>
+  </div>
+  

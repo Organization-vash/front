@@ -268,7 +268,7 @@ li {
   width: 150px;
   margin: 10px 0 0 0;
   position: absolute;
-  right: 150px;
+  right: 500px;
   bottom: 60px;
   transition: background-color 0.3s ease;
 }

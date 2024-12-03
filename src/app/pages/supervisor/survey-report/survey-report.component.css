@@ -1,24 +1,25 @@
 
-
-
 .container {
   text-align: center;
   margin: 20px auto;
 }
 
-.table {
+.table,
+.report-table{
   margin: 0 auto;
   width: 80%;
   border-collapse: collapse;
 }
 
 .table th,
-.table td {
+.table td,
+.report-table th,
+.report-table td{
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.table th {
+.table th, .report-table th{
   background-color: #f58220;
   color: white;
 }
@@ -38,4 +39,53 @@ img {
 
 .btn-primary:hover {
   background-color: #f58220;
+}
+
+
+.container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.report-controls {
+  margin-top: 20px;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.table tr:nth-child(even),
+.report-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover,
+.report-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #f58220;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #d4721a;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

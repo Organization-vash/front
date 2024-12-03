@@ -64,3 +64,14 @@ ngx-charts-bar-vertical, ngx-charts-pie-chart {
   background-color: white; /* Asegura un fondo blanco */
   padding: 10px;
 }
+
+.btn-submit {
+  background-color: #f58220;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.2em;
+}

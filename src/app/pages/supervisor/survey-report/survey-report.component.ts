@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, AfterViewInit  } from '@angular/core';
 import { SurveyReportService } from '../../../core/service/surveyReport.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CommonModule } from '@angular/common';
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import * as ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-survey-report',
@@ -15,13 +17,14 @@ import jsPDF from "jspdf";
   ],
   styleUrls: ['./survey-report.component.css']
 })
-export class SurveyReportComponent implements OnInit {
+export class SurveyReportComponent implements OnInit, AfterViewInit  {
   surveyReports: any[] = [];
   barChartData: any[] = [];
   pieChartData: any[] = [];
   colorScheme = 'cool';
 
-  constructor(private surveyReportService: SurveyReportService) {}
+  constructor(private surveyReportService: SurveyReportService) {
+  }
 
   ngOnInit(): void {
     this.surveyReportService.getSurveyReport().subscribe(
@@ -34,6 +37,24 @@ export class SurveyReportComponent implements OnInit {
         console.error('Error fetching survey report:', error);
       }
     );
+  }
+
+  ngAfterViewInit(): void {
+    // Garantizar que los gráficos estén renderizados antes de capturarlos
+    setTimeout(() => {
+      this.checkGraphRenderState();
+    }, 1500); // Ajusta el tiempo si es necesario
+  }
+
+  checkGraphRenderState(): void {
+    const barChartElement = document.querySelector('ngx-charts-bar-vertical');
+    const pieChartElement = document.querySelector('ngx-charts-pie-chart');
+
+    if (!barChartElement || !pieChartElement) {
+      console.error('Gráficos no renderizados correctamente');
+    } else {
+      console.log('Gráficos listos para capturar');
+    }
   }
 
   generateChartData(): void {
@@ -50,48 +71,51 @@ export class SurveyReportComponent implements OnInit {
     }));
   }
 
-  async exportToPDF(): Promise<void> {
-    const doc = new jsPDF('p', 'mm', 'a4'); // Crear documento PDF
-    const margin = 10;
-    let y = margin;
+  async exportToExcel(): Promise<void> {
+    const workbook = new ExcelJS.Workbook();
 
-    // Título del documento
-    doc.setFontSize(14);
-    doc.text('Reporte de Encuestas', doc.internal.pageSize.getWidth() / 2, y, { align: 'center' });
-    y += 10;
+    // Crear la hoja para los datos
+    const worksheet = workbook.addWorksheet('Reporte de Atenciones');
+    worksheet.columns = [
+      { header: 'Usuario', key: 'adviserUsername', width: 20 },
+      { header: 'Cantidad', key: 'quantity', width: 10 },
+      { header: 'Promedio', key: 'averageValue', width: 15 },
+      { header: 'Fecha', key: 'consultDate', width: 15 },
+    ];
+    this.surveyReports.forEach((report) => worksheet.addRow(report));
 
-    // Capturar tabla
-    const tableElement = document.querySelector('.table');
-    if (tableElement) {
-      const tableCanvas = await html2canvas(tableElement as HTMLElement, { scale: 2 });
-      const tableImageData = tableCanvas.toDataURL('image/png');
-      doc.addImage(tableImageData, 'PNG', margin, y, doc.internal.pageSize.getWidth() - margin * 2, 50); // Ajusta el tamaño
-      y += 60;
-    }
+    // Esperar a que los gráficos estén renderizados
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Capturar gráfico de barras
+    // Crear la hoja para gráficos
+    const chartWorksheet = workbook.addWorksheet('Gráficos');
     const barChartElement = document.querySelector('ngx-charts-bar-vertical');
-    if (barChartElement) {
-      const barCanvas = await html2canvas(barChartElement as HTMLElement, { scale: 2 });
-      const barImageData = barCanvas.toDataURL('image/png');
-      doc.text('Gráfico de barras: Promedio de calificación vs Asesor', margin, y);
-      y += 10;
-      doc.addImage(barImageData, 'PNG', margin, y, doc.internal.pageSize.getWidth() - margin * 2, 60); // Ajusta el tamaño
-      y += 70;
-    }
-
-    // Capturar gráfico circular
     const pieChartElement = document.querySelector('ngx-charts-pie-chart');
-    if (pieChartElement) {
-      const pieCanvas = await html2canvas(pieChartElement as HTMLElement, { scale: 2 });
-      const pieImageData = pieCanvas.toDataURL('image/png');
-      doc.text('Gráfico Circular: Número de encuestas vs Asesor', margin, y);
-      y += 10;
-      doc.addImage(pieImageData, 'PNG', margin, y, doc.internal.pageSize.getWidth() - margin * 2, 60); // Ajusta el tamaño
+
+    // Capturar el gráfico de barras
+    if (barChartElement) {
+      const barCanvas = await html2canvas(barChartElement as HTMLElement);
+      const barImage = barCanvas.toDataURL('image/png');
+      const barImageId = workbook.addImage({
+        base64: barImage,
+        extension: 'png',
+      });
+      chartWorksheet.addImage(barImageId, { tl: { col: 0, row: 0 }, ext: { width: 500, height: 300 } });
     }
 
-    // Guardar el PDF
-    doc.save('Survey_Report.pdf');
-  }
+    // Capturar el gráfico circular
+    if (pieChartElement) {
+      const pieCanvas = await html2canvas(pieChartElement as HTMLElement);
+      const pieImage = pieCanvas.toDataURL('image/png');
+      const pieImageId = workbook.addImage({
+        base64: pieImage,
+        extension: 'png',
+      });
+      chartWorksheet.addImage(pieImageId, { tl: { col: 0, row: 20 }, ext: { width: 500, height: 300 } });
+    }
 
+    // Guardar el archivo Excel
+    const buffer = await workbook.xlsx.writeBuffer();
+    saveAs(new Blob([buffer]), 'Reporte_Atenciones.xlsx');
+  }
 }

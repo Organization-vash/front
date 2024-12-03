@@ -23,12 +23,15 @@
     "angular-google-charts": "^16.0.1",
     "angularx-qrcode": "^18.0.2",
     "bootstrap": "^5.3.3",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "gestion-servicio-frontend": "file:",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.2",
     "rxjs": "~7.8.0",
     "sockjs-client": "^1.6.1",
     "sweetalert2": "^11.14.1",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {

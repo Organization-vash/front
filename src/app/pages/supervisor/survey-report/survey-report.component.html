@@ -1,26 +1,30 @@
-<div id="reportSection" class="container">
-  <h2>Reporte de Encuestas</h2>
- <button (click)="exportToPDF()" class="btn btn-primary">Exportar a PDF</button>
+<div class="container">
+  <h2>Reporte de Atenciones</h2>
+  <button (click)="exportToExcel()" class="btn btn-primary">Exportar a Excel</button>
   <table class="table">
     <thead>
     <tr>
-      <th>Adviser Username</th>
-      <th>Average Value</th>
-      <th>Quantity</th>
-      <th>Consult Date</th>
+      <th>Código</th>
+      <th>Usuario</th>
+      <th>Cantidad</th>
+      <th>Promedio</th>
+      <th>Fecha</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let report of surveyReports">
+      <td>{{ report.id }}</td>
       <td>{{ report.adviserUsername }}</td>
-      <td>{{ report.averageValue }}</td>
       <td>{{ report.quantity }}</td>
+      <td>{{ report.averageValue }}</td>
       <td>{{ report.consultDate }}</td>
     </tr>
     </tbody>
   </table>
+</div>
 
-  <h2>Gráfico de barras: Promedio de calificación vs Asesor</h2>
+<div class="container">
+  <h3>Gráfico de Barras</h3>
   <ngx-charts-bar-vertical
     [view]="[700, 400]"
     [scheme]="colorScheme"
@@ -31,12 +35,11 @@
     [legend]="false"
     [showXAxisLabel]="true"
     [showYAxisLabel]="true"
-    [xAxisLabel]="'Asesor (Nombre de usuario)'"
-    [yAxisLabel]="'Promedio de calificación'"
-    [animations]="false">
-  </ngx-charts-bar-vertical>
+    [xAxisLabel]="'Usuario'"
+    [yAxisLabel]="'Promedio'"
+  ></ngx-charts-bar-vertical>
 
-  <h2>Gráfico Circular: Número de encuestas vs Asesor</h2>
+  <h3>Gráfico Circular</h3>
   <ngx-charts-pie-chart
     [view]="[700, 400]"
     [scheme]="colorScheme"
@@ -45,7 +48,5 @@
     [legend]="true"
     [labels]="true"
     [doughnut]="true"
-    [animations]="false">
-  </ngx-charts-pie-chart>
-
+  ></ngx-charts-pie-chart>
 </div>

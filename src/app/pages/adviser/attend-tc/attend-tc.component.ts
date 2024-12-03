@@ -280,12 +280,13 @@ export class AttendTcComponent implements OnInit {
     if (this.ticketId && this.moduleId) {
       // Aquí se realiza el envío al backend con los datos
       this.ticketService.transferTicket(this.ticketId, this.moduleId).subscribe(
-        response => {
-          alert('Ticket transferido exitosamente');
+        (response) => {
+          alert(response.message);
           this.showDerivatePopup = false;
+          this.router.navigate(['/nqc']);
         },
-        error => {
-          alert('Ticket transferido exitosamente');
+        (error) => {
+          alert(error.message);
           this.showDerivatePopup = false;
         }
       );

@@ -1,0 +1,77 @@
+<div class="container">
+  <h3>Reporte de Encuestas</h3>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Asesor</th>
+      <th>Cantidad</th>
+      <th>Promedio</th>
+      <th>Fecha</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let report of surveyReports">
+      <td>{{ report.adviserUsername }}</td>
+      <td>{{ report.quantity }}</td>
+      <td>{{ report.averageValue }}</td>
+      <td>{{ report.consultDate }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <img *ngIf="pieChartSrc" [src]="pieChartSrc" alt="Gráfico Circular" />
+
+  <img *ngIf="barChartSrc" [src]="barChartSrc" alt="Gráfico de Barras" />
+<div>
+  <button (click)="downloadExcel()" class="btn btn-primary">
+    Descargar Reporte de Encuestas
+  </button>
+</div>
+<br>
+    <h3>Reporte de Atenciones</h3>
+
+    <!-- Tabla de datos -->
+    <table *ngIf="reportData.length > 0; else noData" class="report-table">
+      <thead>
+      <tr>
+        <th>DocNumber</th>
+        <th>Fullname</th>
+        <th>DocumentType</th>
+        <th>Code</th>
+        <th>Service</th>
+        <th>AttentionStatus</th>
+        <th>SuccessStatus</th>
+        <th>Adviser</th>
+        <th>SurveyValue</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of reportData">
+        <td>{{ row.DocNumber }}</td>
+        <td>{{ row.Fullname }}</td>
+        <td>{{ row.DocumentType }}</td>
+        <td>{{ row.Code }}</td>
+        <td>{{ row.Service }}</td>
+        <td>{{ row.AttentionStatus }}</td>
+        <td>{{ row.SuccessStatus }}</td>
+        <td>{{ row.Adviser }}</td>
+        <td>{{ row.SurveyValue }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  <!-- Botones de acción -->
+  <div class="report-controls">
+    <button mat-raised-button color="primary" (click)="downloadReport()" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Descargar Reporte de Atenciones</span>
+      <span *ngIf="isLoading">Procesando...</span>
+    </button>
+  </div>
+
+    <!-- Mensaje cuando no hay datos -->
+    <ng-template #noData>
+      <p>No hay datos disponibles para mostrar.</p>
+    </ng-template>
+
+</div>

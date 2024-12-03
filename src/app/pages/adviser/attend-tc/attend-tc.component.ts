@@ -6,13 +6,13 @@ import { nextQueueService } from '../../../core/service/nextQueue.service';
 import {AddRemoveService } from '../../../core/service/addRemove.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatePipe, NgForOf, NgIf } from '@angular/common';
+import { DatePipe, NgForOf, NgIf, NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'app-attend-tc',
   standalone: true,
-  imports: [NgIf, NgForOf, FormsModule,DatePipe],
+  imports: [NgIf, NgForOf, FormsModule, NgClass, DatePipe],
   templateUrl: './attend-tc.component.html',
   styleUrl: './attend-tc.component.css',
 })
@@ -31,13 +31,13 @@ selectedServices: any[] = []; // Lista de servicios seleccionados
   notAttended: boolean = false;
   showMessagePopup: boolean = false;
   message: string = '';
+  showSurveyPopup: boolean = false;
   timeLeft: number = 1200; // Tiempo total en segundos (20 minutos)
 timeWarning: boolean = false; // Indica si faltan 5 minutos
 timeLimitPassed: boolean = false; // Indica si el tiempo límite fue excedido
 timerInterval: any; // Intervalo del temporizador
 Math = Math; // Exponer Math para usarlo en el template
 attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
-
 
   constructor(
     private ticketService: ticketAttendedTcComponent,
@@ -231,5 +231,38 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       console.error('No se encontró el ID del ticket para finalizar la atención.');
     }
   }
-  
+
+  openSurveyPopup(): void {
+    this.showSurveyPopup = true;
+  }
+// Cierra la ventana emergente
+  closeSurveyPopup(): void {
+    this.showSurveyPopup = false;
+  }
+  selectedRating: number = 0; // Calificación seleccionada
+// Establecer la calificación seleccionada
+  setRating(star: number): void {
+    this.selectedRating = star;
+    // Enviar la calificación al backend
+    const surveyPayload = { value: this.selectedRating };
+    this.nextQueueService.registerSurvey(surveyPayload).subscribe(
+      (response: any) => {
+        console.log('Encuesta registrada con éxito:', response.message);
+        this.message = response.message;
+        this.showMessagePopup = true;
+        setTimeout(() => {
+          this.showMessagePopup = false;
+          this.showSurveyPopup = false; // Cierra la ventana emergente
+        }, 3000);
+      },
+      (error) => {
+        console.error('Error al registrar la encuesta:', error);
+        this.message = 'Error al registrar la encuesta';
+        this.showMessagePopup = true;
+        setTimeout(() => {
+          this.showMessagePopup = false;
+        }, 3000);
+      }
+    );
+  }
 }

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { ModuleService, Module } from '../../../core/service/module.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
 import { Router } from '@angular/router';
 import { ticketAttendedTcComponent } from '../attend-tc/ticket-attend-tc.component';
+import { TicketHistory } from '../../../shared/models/ticket-history.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-next-queue',
   templateUrl: './next-queue.component.html',
   styleUrls: ['./next-queue.component.css'],
   standalone: true,
-  imports: [CommonModule], // Asegúrate de incluir CommonModule aquí
+  imports: [CommonModule, MatIconModule],
 })
 export class NextQueueComponent implements OnInit {
   moduleId: number;
@@ -21,6 +23,8 @@ export class NextQueueComponent implements OnInit {
   showAcceptPopup: boolean = false;
   showRejectPopup: boolean = false;
   isLoading: boolean = false; // Para controlar el estado de carga
+  todayTickets: TicketHistory[] = [];
+  showHistory = false;
 
   ticket = {
     ticketCodeId: '',
@@ -156,5 +160,26 @@ export class NextQueueComponent implements OnInit {
       }, 3000);
       console.log('Ticket rechazado');
     });
+  }
+
+  loadTodayHistory(): void{
+    if(!this.moduleId){
+      console.error('El módulo no está definido');
+      return;
+    }
+
+    this.nextQueueService.getTodayTickets(this.moduleId).subscribe({
+      next: (tickets) => {
+        this.todayTickets = tickets;
+        this.showHistory = true;
+      },
+      error: (err) => {
+        console.error('Error al obtener los tickets de hoy', err);
+      },
+    });
+  }
+
+  closeHistory(): void {
+    this.showHistory = false;
   }
 }

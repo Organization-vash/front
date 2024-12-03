@@ -1,4 +1,10 @@
 <div class="container">
+  <div class="icon-container">
+    <button class="btn-history" (click)="loadTodayHistory()">
+      <mat-icon class="icon-history">schedule</mat-icon>
+    </button>
+  </div>
+
   <h2>Detalles del Módulo</h2>
   <div>
     <p><strong>Nombre:</strong> {{ userName }}</p>
@@ -55,5 +61,32 @@
       </div>
     </div>
   </div>
-</div>
 
+  <div *ngIf="showHistory" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Tickets Atendidos Hoy</h2>
+      <div *ngIf="todayTickets.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Servicio</th>
+              <th>Cliente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of todayTickets">
+              <td>{{ ticket.ticketCode }}</td>
+              <td>{{ ticket.serviceName }}</td>
+              <td>{{ ticket.customerFullName }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="todayTickets.length === 0">
+        <p>No se han atendido tickets hoy.</p>
+      </div>
+      <button class="btn btn-secondary" (click)="closeHistory()">Cerrar</button>
+    </div>
+  </div>
+</div>

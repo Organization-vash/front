@@ -3,11 +3,10 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { ticketAttendedTcComponent } from './ticket-attend-tc.component';
 import { ServiceService } from '../../../core/service/service.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
-import {AddRemoveService } from '../../../core/service/addRemove.service';
+import { AddRemoveService } from '../../../core/service/addRemoveService.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe, NgForOf, NgIf, NgClass } from '@angular/common';
-
 
 @Component({
   selector: 'app-attend-tc',
@@ -16,6 +15,7 @@ import { DatePipe, NgForOf, NgIf, NgClass } from '@angular/common';
   templateUrl: './attend-tc.component.html',
   styleUrl: './attend-tc.component.css',
 })
+
 @Injectable({
   providedIn: 'root',
 })
@@ -33,11 +33,11 @@ selectedServices: any[] = []; // Lista de servicios seleccionados
   message: string = '';
   showSurveyPopup: boolean = false;
   timeLeft: number = 1200; // Tiempo total en segundos (20 minutos)
-timeWarning: boolean = false; // Indica si faltan 5 minutos
-timeLimitPassed: boolean = false; // Indica si el tiempo límite fue excedido
-timerInterval: any; // Intervalo del temporizador
-Math = Math; // Exponer Math para usarlo en el template
-attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
+  timeWarning: boolean = false; // Indica si faltan 5 minutos
+  timeLimitPassed: boolean = false; // Indica si el tiempo límite fue excedido
+  timerInterval: any; // Intervalo del temporizador
+  Math = Math; // Exponer Math para usarlo en el template
+  attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
 
   constructor(
     private ticketService: ticketAttendedTcComponent,
@@ -52,7 +52,7 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       this.ticketData = data;
       this.attentionId = data?.attentionId || null; // Extraer attentionId
       console.log('Datos del ticket:', this.ticketData);
-    
+
     this.obtenerService();
   });
     this.startTimer();
@@ -63,26 +63,26 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       this.selectedServices = this.ticketData?.selectedServices || [
         { id: this.ticketData.serviceId, name: this.ticketData.serviceName },
       ];
-  
+
       // Filtra los servicios disponibles excluyendo los seleccionados
       this.availableServices = services.filter(
         (service) =>
           !this.selectedServices.some((selected) => selected.id === service.id)
       );
-  
+
       // Debugging: Verifica qué datos están cargando
       console.log('Servicios seleccionados:', this.selectedServices);
       console.log('Servicios disponibles:', this.availableServices);
     });
   }
-  
-  
+
+
   addService(service: any): void {
     if (!this.attentionId) {
       console.error('Attention ID no está disponible.');
       return;
     }
-  
+
     this.addRemoveService.addServiceToAttention(this.attentionId, service.id).subscribe(
       () => {
         console.log('Servicio agregado:', service);
@@ -94,13 +94,13 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       }
     );
   }
-  
+
   removeService(service: any): void {
     if (!this.attentionId) {
       console.error('Attention ID no está disponible.');
       return;
     }
-  
+
     this.addRemoveService.removeServiceFromAttention(this.attentionId, service.id).subscribe(
       () => {
         console.log('Servicio eliminado:', service);
@@ -112,7 +112,7 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       }
     );
   }
-  
+
 
   markAsSuccessful() {
     if (!this.successful) {
@@ -157,18 +157,18 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
   startTimer(): void {
     this.timerInterval = setInterval(() => {
       this.timeLeft--;
-  
+
       // Notificar cuando queden 5 minutos
       if (this.timeLeft === 300 && !this.timeWarning) {
         this.timeWarning = true;
         alert("Quedan 5 minutos para finalizar el tiempo máximo.");
       }
-  
+
       // Notificar si se supera el promedio de tiempo de atención (10 minutos)
       if (this.timeLeft === 600) { // 10 minutos pasados
         alert("Promedio de tiempo superado.");
       }
-  
+
       // Notificar cuando se pase del tiempo límite (0 segundos)
       if (this.timeLeft <= 0 && !this.timeLimitPassed) {
         this.timeLimitPassed = true;
@@ -179,23 +179,23 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       }
     }, 1000); // Intervalo de 1 segundo
   }
-  
-  
+
+
   notifyTimeLimitPassed(): void {
     alert("Límite de tiempo pasado. Por favor, finalice la atención.");
   }
-  
+
   stopTimer(): void {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
   }
-  
+
   ngOnDestroy(): void {
     // Detener el temporizador al destruir el componente
     this.stopTimer();
   }
-  
+
 
   finalizarAtencion() {
     // Verificar si no ha pasado al menos un minuto
@@ -203,16 +203,16 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
       alert("No se puede terminar la atención antes de 1 minuto.");
       return;
     }
-  
+
     const ticketId = this.ticketData?.ticketCodeId;
     if (this.ticketData && ticketId) {
       this.nextQueueService.finalizarAtencion(ticketId).subscribe(
         (response) => {
           this.message = response.message;
           this.showMessagePopup = true;
-  
+
           this.stopTimer();
-  
+
           setTimeout(() => {
             this.showMessagePopup = false;
             this.router.navigate(['/nqc']);
@@ -221,7 +221,7 @@ attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
         (error) => {
           this.message = 'Error al finalizar la atención';
           this.showMessagePopup = true;
-  
+
           setTimeout(() => {
             this.showMessagePopup = false;
           }, 3000);

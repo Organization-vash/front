@@ -118,6 +118,7 @@ export class NextQueueComponent implements OnInit {
           customerDocNumber: response.customerDocNumber,
           customerFullName: response.customerFullName,
         };
+        localStorage.setItem('ticketData', JSON.stringify(this.ticket));
         this.mostrarPopup = true;
       },
       (error: any) => {
@@ -135,13 +136,13 @@ export class NextQueueComponent implements OnInit {
           this.showAcceptPopup = false;
         }, 3000);
         console.log('Ticket aceptado');
-        
+
         // Agregar attentionId al ticket
         this.ticketAttendTc.setTicketData({
           ...this.ticket, // Mantén los datos actuales del ticket
           attentionId: response.attentionId, // Añade el attentionId de la respuesta
         });
-        
+
         this.router.navigate(['/attention']);
       },
       (error) => {
@@ -149,7 +150,7 @@ export class NextQueueComponent implements OnInit {
       }
     );
   }
-  
+
 
   rechazarTicket() {
     this.nextQueueService.rejectTicket().subscribe(() => {

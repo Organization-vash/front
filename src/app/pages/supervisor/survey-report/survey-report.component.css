@@ -1,0 +1,41 @@
+
+
+
+.container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.table {
+  margin: 0 auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  background-color: #f58220;
+  color: white;
+}
+
+img {
+  width: 70%;
+  margin: 20px 0;
+}
+
+.btn-primary {
+  background-color: #f58220;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #f58220;
+}

@@ -25,6 +25,7 @@ import { QrCodeComponent } from './pages/customer/qr/qr.component';
 import { AgencyComponent } from './pages/admin/agency/list-created-agency/agencies-crud.component';
 import { DetalleAgencyComponent } from './pages/admin/agency/detalle-agency/detalle-agency.component';
 import { ActualizarAgencyComponent } from './pages/admin/agency/actualizar-agency/actualizar-agency.component';
+import {SurveyReportComponent} from "./pages/supervisor/survey-report/survey-report.component";
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -64,6 +65,7 @@ export const routes: Routes = [
   { path: 'detalle-agency/:id', component: DetalleAgencyComponent },
   { path: 'actualizar-agency/:id', component: ActualizarAgencyComponent },
 
+  { path: 'survey-report', component: SurveyReportComponent },
   // Ruta comodín para redirigir si no encuentra otra ruta
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

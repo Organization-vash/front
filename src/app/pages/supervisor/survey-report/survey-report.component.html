@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Reporte de Encuestas</h2>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Asesor</th>
+      <th>Cantidad</th>
+      <th>Promedio</th>
+      <th>Fecha</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let report of surveyReports">
+      <td>{{ report.adviserUsername }}</td>
+      <td>{{ report.quantity }}</td>
+      <td>{{ report.averageValue }}</td>
+      <td>{{ report.consultDate }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>Gráfico Circular</h3>
+  <img *ngIf="pieChartSrc" [src]="pieChartSrc" alt="Gráfico Circular" />
+
+  <h3>Gráfico de Barras</h3>
+  <img *ngIf="barChartSrc" [src]="barChartSrc" alt="Gráfico de Barras" />
+<div>
+  <button (click)="downloadExcel()" class="btn btn-primary">
+    Descargar Reporte en Excel
+  </button>
+</div>
+</div>

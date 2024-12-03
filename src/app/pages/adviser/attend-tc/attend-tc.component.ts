@@ -1,12 +1,12 @@
 
 import { Component, Injectable, OnInit } from '@angular/core';
 import { ticketAttendedTcComponent } from './ticket-attend-tc.component';
+import {DatePipe,  NgClass, NgForOf, NgIf} from '@angular/common';
 import { ServiceService } from '../../../core/service/service.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
 import { AddRemoveService } from '../../../core/service/addRemoveService.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatePipe, NgForOf, NgIf, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-attend-tc',

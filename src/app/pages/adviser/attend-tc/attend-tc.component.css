@@ -7,27 +7,22 @@ body {
   margin: 45px;
   padding: 0;
   height: 100%;
+  align-items: center; /* Centrar verticalmente */
   box-sizing: border-box;
 }
 
 .container {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 1200px;
+  flex-direction: column; /* Organiza el contenido en columnas */
+  width: 90%; /* Ajusta el ancho al tamaño de la pantalla */
+  max-width: 1200px; /* Define un tamaño máximo */
   background-color: white;
   border: 2px solid #d3d3d3;
-  margin: 0;
-  padding: 0;
+  border-radius: 10px; /* Opcional: Bordes redondeados */
+  padding: 20px;
   box-sizing: border-box;
-}
-
-.sidebar {
-  width: 25%;
-  background-color: #eaeaea;
-  padding: 15px;
-  margin: 0;
-  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Opcional: Sombra suave */
+  margin-top: 30px;
 }
 
 .sidebar h3 {
@@ -63,10 +58,11 @@ body {
 }
 
 .main-content {
-  width: 75%;
+  width: 100%;
   padding: 15px;
   margin: 0;
   box-sizing: border-box;
+  
 }
 
 .header {
@@ -209,4 +205,57 @@ li {
   z-index: 1000;
   text-align: center;
   width: 300px;
+}
+
+
+.survey-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 90%; /* Ajusta a un 90% del ancho de la pantalla */
+  max-width: 400px; /* Máximo 400px */
+  height: auto; /* Altura automática para ajustarse al contenido */
+  padding: 30px; /* Espaciado interno */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra */
+  z-index: 1000;
+  border-radius: 12px; /* Bordes redondeados */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Espacio uniforme entre elementos */
+}
+.survey-stars {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Espaciado entre las estrellas */
+  margin: 20px 0; /* Margen entre las estrellas y otros elementos */
+}
+.fa-star {
+  font-size: 45px; /* Tamaño de las estrellas */
+  cursor: pointer;
+  color: #ccc; /* Color de estrellas inactivas */
+  transition: color 0.3s, transform 0.2s; /* Animación al pasar el mouse */
+}
+.fa-star.fas {
+  color: #ffd700; /* Color de estrellas activas */
+}
+.fa-star:hover {
+  color: #ffc107; /* Color al pasar el mouse */
+  transform: scale(1.2); /* Efecto de zoom */
+}
+.close-button {
+  margin-top: 20px;
+  padding: 12px 24px; /* Tamaño del botón */
+  border: none;
+  background: #ff9800;
+  color: white;
+  font-size: 18px; /* Tamaño del texto */
+  border-radius: 6px;
+  cursor: pointer;
+}
+.close-button:hover {
+  background: darkorange;
 }

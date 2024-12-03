@@ -1,0 +1,123 @@
+/* Estilo para el encabezado de la tabla */
+.row{
+  margin-top: 10px;
+}
+
+.table-entel thead {
+  background-color: #0023A3; /* Azul Entel */
+  color: white;
+  border-bottom: 2px solid #FF6600; /* Línea inferior naranja para el encabezado */
+}
+
+/* Estilo para las filas de la tabla */
+.table-entel tbody tr {
+  background-color: #f8f9fa; /* Color claro para las filas */
+  border-bottom: 1px solid #dee2e6; /* Borde suave para separar las filas */
+}
+
+/* Efecto al pasar el cursor por una fila */
+.table-entel tbody tr:hover {
+  background-color: #e0e7ff; /* Fondo azul claro al pasar el cursor */
+  border-color: #0023A3; /* Borde azul al pasar el cursor */
+}
+
+/* Bordes de la tabla */
+.table-entel {
+    border-collapse: separate; /* Mantener bordes separados para un diseño moderno */
+    border-spacing: 0; /* Sin espaciado entre celdas */
+}
+
+  
+  /* Botones personalizados */
+  
+  /* Botón Modificar (color naranja Entel) */
+  .btn-entel-modificar {
+    background-color: #FF6600; /* Naranja Entel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* Botón Eliminar (color rojo para acciones destructivas) */
+  .btn-entel-eliminar {
+    background-color: #fa0019; /* Rojo Bootstrap */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* Botón Detalles (color azul Entel) */
+  .btn-entel-detalles {
+    background-color: #0023A3; /* Azul Entel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  /* Margen entre botones */
+  .table-entel .btn {
+    margin-left: 10px;
+  }
+  
+/* Estilos para la barra de búsqueda y el botón Search */
+.input-group .form-control {
+  border-color: #0023A3; /* Azul Entel */
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  box-shadow: none;
+}
+
+.input-group .form-control:focus {
+  border-color: #FF6600; /* Naranja Entel */
+  box-shadow: 0 0 0 0.2rem rgba(255, 102, 0, 0.25); /* Sombra naranja */
+}
+
+.btn-entel-search {
+  background-color: #FF6600; /* Naranja Entel */
+  color: white;
+  border: 1px solid #FF6600;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+
+/* Encabezado del formulario */
+.form-header {
+    background-color: #0023A3; /* Azul Entel */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    margin-top: 20px; /* Espacio entre el navbar y el título del formulario */
+  }
+  
+  /* Contenedor del formulario */
+  .form-container {
+    border: 1px solid #0023A3; /* Bordes azul Entel */
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  /* Estilo para los inputs */
+  .form-control {
+    border: 2px solid #FF6600; /* Naranja Entel */
+    border-radius: 5px;
+  }
+  
+  /* Botón Guardar */
+  .btn-entel {
+    background-color: #FF6600; /* Naranja Entel */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+  }
+  
+  .btn-entel:disabled {
+    background-color: #ffb380; /* Naranja claro para botón deshabilitado */
+    color: white;
+  }
+  

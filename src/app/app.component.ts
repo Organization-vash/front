@@ -12,10 +12,8 @@ import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.compo
 
   imports: [
     CommonModule,
-    ListaServicesComponent,
     RouterOutlet,
     RouterModule,
-    ListaUsersComponent,
   ],
 
   templateUrl: './app.component.html',

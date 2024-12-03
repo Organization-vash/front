@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { ModuleService, Module } from '../../../core/service/module.service';
 import { nextQueueService } from '../../../core/service/nextQueue.service';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ticketAttendedTcComponent } from '../attend-tc/ticket-attend-tc.component';
 import { TicketHistory } from '../../../shared/models/ticket-history.model';
 import { MatIconModule } from '@angular/material/icon';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-next-queue',
@@ -14,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, MatIconModule],
 })
-export class NextQueueComponent implements OnInit {
+export class NextQueueComponent implements OnInit, OnDestroy {
   moduleId: number;
   userId: string; // Almacena el ID del usuario
   userName: string; // Almacena el nombre del usuario
@@ -22,9 +23,10 @@ export class NextQueueComponent implements OnInit {
   mostrarPopup: boolean = false;
   showAcceptPopup: boolean = false;
   showRejectPopup: boolean = false;
-  isLoading: boolean = false; // Para controlar el estado de carga
   todayTickets: TicketHistory[] = [];
   showHistory = false;
+  private intervalId: any;
+  private subscription: Subscription;
 
   ticket = {
     ticketCodeId: '',
@@ -47,6 +49,40 @@ export class NextQueueComponent implements OnInit {
     this.userName = loggedUser.name || '';
     this.moduleId = loggedUser.moduleId;
     this.fetchModuleStatus(this.moduleId); // Cargar el estado del módulo
+    this.fetchTransferredTickets();
+    this.intervalId = setInterval(() => {
+      this.fetchTransferredTickets();
+    }, 30000);
+  }
+
+  ngOnDestroy(): void {
+    // Limpiar intervalo cuando el componente se destruya
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  fetchTransferredTickets(): void {
+    this.subscription = this.nextQueueService.getDerivate().subscribe(
+      (response) => {
+        console.log('Tickets transferidos:', response);
+        this.ticket = {
+          ticketCodeId: response.ticketCodeId,
+          ticketCode: response.ticketCode,
+          serviceName: response.serviceName,
+          customerDocNumber: response.customerDocNumber,
+          customerFullName: response.customerFullName,
+        };
+        localStorage.setItem('ticketData', JSON.stringify(this.ticket));
+        this.mostrarPopup = true;
+      },
+      (error) => {
+        console.error('Error al obtener los tickets transferidos:', error);
+      }
+    );
   }
 
   fetchModuleStatus(moduleId: number) {
@@ -118,6 +154,7 @@ export class NextQueueComponent implements OnInit {
           customerDocNumber: response.customerDocNumber,
           customerFullName: response.customerFullName,
         };
+        localStorage.setItem('ticketData', JSON.stringify(this.ticket));
         this.mostrarPopup = true;
       },
       (error: any) => {
@@ -135,13 +172,13 @@ export class NextQueueComponent implements OnInit {
           this.showAcceptPopup = false;
         }, 3000);
         console.log('Ticket aceptado');
-        
+
         // Agregar attentionId al ticket
         this.ticketAttendTc.setTicketData({
           ...this.ticket, // Mantén los datos actuales del ticket
           attentionId: response.attentionId, // Añade el attentionId de la respuesta
         });
-        
+
         this.router.navigate(['/attention']);
       },
       (error) => {
@@ -149,7 +186,7 @@ export class NextQueueComponent implements OnInit {
       }
     );
   }
-  
+
 
   rechazarTicket() {
     this.nextQueueService.rejectTicket().subscribe(() => {

@@ -62,4 +62,8 @@ export class nextQueueService {
   getTodayTickets(moduleId: number): Observable<TicketHistory[]> {
     return this.http.get<TicketHistory[]>(`${this.baseURL}/getHistory?moduleId=${moduleId}`);
   }
+
+  getDerivate(): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/transferred-tickets`, {});
+  }
 }

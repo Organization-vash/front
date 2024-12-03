@@ -7,6 +7,8 @@ import { nextQueueService } from '../../../core/service/nextQueue.service';
 import { AddRemoveService } from '../../../core/service/addRemoveService.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DatePipe, NgForOf, NgIf, NgClass } from '@angular/common';
+import {TicketService} from "../../../core/service/ticket.service";
 
 @Component({
   selector: 'app-attend-tc',
@@ -23,8 +25,7 @@ export class AttendTcComponent implements OnInit {
   ticketData: any;
   services: any[] = [];
   availableServices: any[] = []; // Lista de servicios disponibles
-selectedServices: any[] = []; // Lista de servicios seleccionados
-
+  selectedServices: any[] = []; // Lista de servicios seleccionados
   successful: boolean = false;
   notSuccessful: boolean = false;
   attended: boolean = false;
@@ -38,24 +39,32 @@ selectedServices: any[] = []; // Lista de servicios seleccionados
   timerInterval: any; // Intervalo del temporizador
   Math = Math; // Exponer Math para usarlo en el template
   attentionId: number | null = null; // Nuevo campo para almacenar el attentionId
+  ticketId: number | null = null;  // Lo asignaremos con el valor del localStorage
+  moduleId: number | null = null;
+  showMessage: boolean = false;
+  showDerivatePopup: boolean = false;
 
   constructor(
-    private ticketService: ticketAttendedTcComponent,
+    private ticketAttendService: ticketAttendedTcComponent,
     private serviceService: ServiceService,
     private nextQueueService: nextQueueService,
     private addRemoveService: AddRemoveService,
+    private ticketService: TicketService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.ticketService.getTicketData().subscribe((data) => {
+    this.ticketAttendService.getTicketData().subscribe((data) => {
       this.ticketData = data;
       this.attentionId = data?.attentionId || null; // Extraer attentionId
       console.log('Datos del ticket:', this.ticketData);
-
-    this.obtenerService();
-  });
+      this.obtenerService();
+    });
     this.startTimer();
+    const ticketData = this.ticketService.getTicketFromLocalStorage();
+    if (ticketData && ticketData.ticketCodeId) {
+      this.ticketId = ticketData.ticketCodeId;
+    }
   }
   private obtenerService(): void {
     this.serviceService.obtenerListaDeServicios().subscribe((services) => {
@@ -180,7 +189,6 @@ selectedServices: any[] = []; // Lista de servicios seleccionados
     }, 1000); // Intervalo de 1 segundo
   }
 
-
   notifyTimeLimitPassed(): void {
     alert("Límite de tiempo pasado. Por favor, finalice la atención.");
   }
@@ -195,7 +203,6 @@ selectedServices: any[] = []; // Lista de servicios seleccionados
     // Detener el temporizador al destruir el componente
     this.stopTimer();
   }
-
 
   finalizarAtencion() {
     // Verificar si no ha pasado al menos un minuto
@@ -264,5 +271,28 @@ selectedServices: any[] = []; // Lista de servicios seleccionados
         }, 3000);
       }
     );
+  }
+
+  initDerivate(): void{
+    this.showDerivatePopup = true;
+  }
+
+  transferTicket(): void {
+    if (this.ticketId && this.moduleId) {
+      // Aquí se realiza el envío al backend con los datos
+      this.ticketService.transferTicket(this.ticketId, this.moduleId).subscribe(
+        (response) => {
+          alert(response.message);
+          this.showDerivatePopup = false;
+          this.router.navigate(['/nqc']);
+        },
+        (error) => {
+          alert(error.message);
+          this.showDerivatePopup = false;
+        }
+      );
+    } else {
+      alert('Por favor, ingresa el ID del módulo');
+    }
   }
 }

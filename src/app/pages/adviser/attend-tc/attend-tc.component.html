@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atención al Cliente</title>
-  
+
 </head>
 <body>
 <div class="container">
-  
-
   <div class="main-content">
     <div class="header">
       <h2>ATENCIÓN</h2>
@@ -21,7 +19,6 @@
           Límite de tiempo pasado: {{ Math.abs(timeLeft) * 1000 | date: 'mm:ss':'UTC' }}
         </span>
       </div>
-      
     </div>
 
     <div class="content-section">
@@ -69,7 +66,6 @@
           </label>
         </div>
 
-
         <button class="finalize-button" (click)="finalizarAtencion()">FINALIZAR</button>
       </div>
       <div class="services">
@@ -85,7 +81,6 @@
               </li>
             </ul>
           </div>
-          
 
           <div class="service-box">
             <h4>SERVICIOS DISPONIBLES</h4>
@@ -98,9 +93,13 @@
               </li>
             </ul>
           </div>
-          
         </div>
         <button class="survey-button" (click)="openSurveyPopup()">Realizar encuesta</button>
+        <div class="derivate-button-container">
+          <button class="derivate-button" (click)="initDerivate()">
+            Derivar Ticket
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -123,3 +122,28 @@
   <button class="close-button" (click)="closeSurveyPopup()">Cerrar</button>
 </div>
 </html>
+
+<div *ngIf="showDerivatePopup" class="modal-overlay">
+  <!-- Formulario de derivación de ticket -->
+  <div class="derivate-popup">
+    <h3>Derivar Ticket</h3>
+    <!-- Botón de cerrar el popup -->
+    <button class="close-button" (click)="showDerivatePopup = false">x</button>
+    <form>
+      <div>
+        <label for="ticketId">Ticket ID:</label>
+        <input type="number" id="ticketId" [(ngModel)]="ticketId" name="ticketId" [readonly]="true">
+      </div>
+
+      <div>
+        <label for="moduleId">Escriba el Módulo:</label>
+        <input type="number" id="moduleId" [(ngModel)]="moduleId" name="moduleId">
+      </div>
+      <button (click)="transferTicket()" class="derivate-button-fin">Derivar Ticket</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="showMessage" class="message">
+  {{ message }}
+</div>

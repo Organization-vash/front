@@ -17,7 +17,19 @@ export class TicketService {
 
     return this.http.post(url, {});
   }
+
   searchTickets(searchTerm: string): Observable<TicketCode[]> {
     return this.http.get<TicketCode[]>(`${this.apiUrl}/search?code=${searchTerm}`);
+  }
+
+  transferTicket(ticketId: number, moduleId: number): Observable<any> {
+    const url = `${this.apiUrl}/derivate?ticketId=${ticketId}&moduleId=${moduleId}`;
+
+    return this.http.post<any>(url, {});
+  }
+
+  getTicketFromLocalStorage() {
+    const ticketData = localStorage.getItem('ticketData');
+    return ticketData ? JSON.parse(ticketData) : null;
   }
 }

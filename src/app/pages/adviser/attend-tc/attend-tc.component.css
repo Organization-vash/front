@@ -62,7 +62,7 @@ body {
   padding: 15px;
   margin: 0;
   box-sizing: border-box;
-  
+
 }
 
 .header {
@@ -207,7 +207,6 @@ li {
   width: 300px;
 }
 
-
 .survey-popup {
   position: fixed;
   top: 50%;
@@ -258,4 +257,117 @@ li {
 }
 .close-button:hover {
   background: darkorange;
+}
+.derivate-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  margin: 10px 0 0 0;
+  position: absolute;
+  right: 150px;
+  bottom: 60px;
+  transition: background-color 0.3s ease;
+}
+
+/* Contenedor del popup de derivación */
+.derivate-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título del popup */
+.derivate-popup h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilos de los campos de formulario */
+.derivate-popup label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Estilos del input */
+.derivate-popup input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #f9f9f9;
+}
+
+.derivate-button:hover {
+  background-color: #f57c00;
+}
+
+/* Estilo del formulario */
+.derivate-popup form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Fondo oscuro para el modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.derivate-button-fin {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.derivate-button-fin:hover {
+  background-color: #f57c00;
+}
+
+/* Estilo del botón de cerrar */
+.close-button {
+  background-color: #f44336; /* Rojo */
+  color: white;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  position: absolute;
+  top: 1px;
+  right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
 }

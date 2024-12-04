@@ -20,5 +20,5 @@ import { ListaUsersComponent } from './pages/admin/lista-users/lista-users.compo
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'INSO II ';
+
 }

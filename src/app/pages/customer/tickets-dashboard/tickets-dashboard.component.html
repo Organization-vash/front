@@ -9,7 +9,7 @@
         </li>
       </ul>
     </div>
-  
+
     <!-- Lado Derecho -->
     <div class="right-panel">
       <!-- Parte Superior -->
@@ -18,11 +18,14 @@
         <p *ngIf="currentTicket">Ticket: {{ currentTicket.code }}</p>
         <p *ngIf="!currentTicket">Esperando ticket...</p>
       </div>
-  
+
       <!-- Parte Inferior -->
       <div class="bottom-section">
         <!-- aca pones tu videito checho-->
+        <video controls loop autoplay muted width="100%" height="auto">
+          <source src="video.mp4" type="video/mp4">
+          Tu navegador no soporta la reproducción de videos.
+        </video>
       </div>
     </div>
-  </div>
-  
+</div>

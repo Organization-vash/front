@@ -25,6 +25,7 @@ import { QrCodeComponent } from './pages/customer/qr/qr.component';
 import { AgencyComponent } from './pages/admin/agency/list-created-agency/agencies-crud.component';
 import { DetalleAgencyComponent } from './pages/admin/agency/detalle-agency/detalle-agency.component';
 import { ActualizarAgencyComponent } from './pages/admin/agency/actualizar-agency/actualizar-agency.component';
+import {TicketsDashboardComponent} from "./pages/customer/tickets-dashboard/tickets-dashboard.component";
 
 export const routes: Routes = [
   { path: '', component: InicioGcComponent }, // Ruta para la página inicial
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'ticket', component: TicketComponent },
   { path: 'nqc', component: NextQueueComponent },
   { path: 'attention', component: AttendTcComponent },
+  { path: 'dashboard', component: TicketsDashboardComponent },
 
   // Rutas para login
   { path: 'login', component: LoginComponent }, // Ruta para el chat

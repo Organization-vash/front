@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Service } from '../../shared/models/service';
+import {environment} from "../../assets/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceService {
-  private baseURL = 'http://localhost:8080/api/v1/admin/service'; // URL del backend
+  private baseURL = `${environment.baseURL}/services`;
 
   constructor(private httpClient: HttpClient) {}
 

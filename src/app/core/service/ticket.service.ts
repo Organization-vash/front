@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TicketCode } from '../../shared/models/search-code.model';
+import {environment} from "../../assets/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/code';
+  private apiUrl = `${environment.baseURL}/agency`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../assets/environment';
 
-// Interfaz para definir la estructura del módulo
 export interface Module {
   id: number;
   createdAt: string;
@@ -14,7 +14,7 @@ export interface Module {
   providedIn: 'root'
 })
 export class ModuleService {
-  private baseURL = 'http://localhost:8080/api/v1/modules';  // URL del backend
+  private baseURL = `${environment.baseURL}/agency`;
 
   constructor(private httpClient: HttpClient) {}
 

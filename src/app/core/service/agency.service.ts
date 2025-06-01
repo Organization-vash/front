@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Agency } from '../../shared/models/agency';
+import {environment} from "../../assets/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AgencyService {
-  private baseURL = 'http://localhost:8080/api/v1/admin/agency'; // URL del backend
+  private baseURL = `${environment.baseURL}/agency`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -16,7 +17,6 @@ export class AgencyService {
   }
 
   crearAgencia(agency: Agency): Observable<Agency> {
-    // Cambiado a Observable<Agency>
     return this.httpClient.post<Agency>(`${this.baseURL}`, agency);
   }
 

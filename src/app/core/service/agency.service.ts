@@ -8,7 +8,7 @@ import {environment} from "../../assets/environment";
   providedIn: 'root',
 })
 export class AgencyService {
-  private baseURL = `${environment.baseURL}/agency`;
+  private baseURL = `${environment.baseURL}/agencies`;
 
   constructor(private httpClient: HttpClient) {}
 

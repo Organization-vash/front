@@ -9,7 +9,7 @@ import {environment} from "../../assets/environment";
 })
 export class TicketService {
 
-  private apiUrl = `${environment.baseURL}/agency`;
+  private apiUrl = `${environment.baseURL}/codes`;
 
   constructor(private http: HttpClient) {}
 

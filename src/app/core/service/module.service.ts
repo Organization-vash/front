@@ -14,32 +14,27 @@ export interface Module {
   providedIn: 'root'
 })
 export class ModuleService {
-  private baseURL = `${environment.baseURL}/agency`;
+  private baseURL = `${environment.baseURL}/modules`;
 
   constructor(private httpClient: HttpClient) {}
 
-  // Obtener lista de módulos
   obtenerListaDeModulos(): Observable<Module[]> {
     return this.httpClient.get<Module[]>(`${this.baseURL}/all`);
   }
 
-  // Crear un nuevo módulo
   crearModulo(module: Module): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}/create`, module);
   }
 
-  // Actualizar un módulo
   actualizarModulo(module: Module): Observable<Object> {
     console.log('Payload enviado al backend:', module);
     return this.httpClient.put(`${this.baseURL}/change-status`, module);
 }
 
-  // Obtener un módulo por ID
   obtenerModuloPorId(id: number): Observable<Module> {
     return this.httpClient.get<Module>(`${this.baseURL}/${id}`);
   }
 
-  // Eliminar un módulo
   eliminarModulo(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }

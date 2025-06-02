@@ -88,7 +88,7 @@ export class NextQueueComponent implements OnInit, OnDestroy {
   fetchModuleStatus(moduleId: number) {
     this.moduleService.obtenerModuloPorId(moduleId).subscribe(
       (module: Module) => {
-        this.moduleStatus = module.moduleStatus;
+        this.moduleStatus = module.status;
       },
       (error: any) => {
         console.error('Error fetching module status:', error);
@@ -102,7 +102,7 @@ export class NextQueueComponent implements OnInit, OnDestroy {
       id: this.moduleId,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      moduleStatus: newStatus,
+      status: newStatus,
       userId: this.userId, // Agregar UserID
       userName: this.userName, // Agregar nombre del usuario
     };

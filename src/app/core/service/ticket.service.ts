@@ -13,10 +13,8 @@ export class TicketService {
 
   constructor(private http: HttpClient) {}
 
-  generarTicket(document: string, fullname: string, serviceId: number, agencyId: number): Observable<any> {
-    const url = `${this.apiUrl}/generateCode?document=${document}&fullname=${fullname}&serviceId=${serviceId}&agencyId=${agencyId}`;
-
-    return this.http.post(url, {});
+  generarTicket(customerName: string, serviceName: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, {customerName, serviceName});
   }
 
   searchTickets(searchTerm: string): Observable<TicketCode[]> {

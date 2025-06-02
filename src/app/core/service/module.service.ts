@@ -19,16 +19,16 @@ export class ModuleService {
   constructor(private httpClient: HttpClient) {}
 
   obtenerListaDeModulos(): Observable<Module[]> {
-    return this.httpClient.get<Module[]>(`${this.baseURL}/all`);
+    return this.httpClient.get<Module[]>(`${this.baseURL}`);
   }
 
   crearModulo(module: Module): Observable<Object> {
-    return this.httpClient.post(`${this.baseURL}/create`, module);
+    return this.httpClient.post(`${this.baseURL}`, module);
   }
 
   actualizarModulo(module: Module): Observable<Object> {
     console.log('Payload enviado al backend:', module);
-    return this.httpClient.put(`${this.baseURL}/change-status`, module);
+    return this.httpClient.put(`${this.baseURL}`, module);
 }
 
   obtenerModuloPorId(id: number): Observable<Module> {

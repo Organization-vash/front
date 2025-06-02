@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TicketService } from '../../../core/service/ticket.service';
+import { DocumentType } from '../../../shared/models/document-type.enum';
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
@@ -16,6 +17,9 @@ export class FormularioCgComponent {
   servicioSeleccionado: string = '';
   formularioValido: boolean = false;
   errorMessage: string = '';
+  tipoDocumento: DocumentType;
+  numeroDocumento: string = '';
+  successMessage: string = '';
 
   servicios = [
     { id: 1, name: 'Portabilidad' },
@@ -61,5 +65,28 @@ export class FormularioCgComponent {
           this.errorMessage = 'Hubo un problema al generar el ticket.';
         },
       });
+  }
+
+  validarDocumento(): boolean {
+    const esDNI = this.tipoDocumento === 'DNI';
+    return esDNI
+      ? this.numeroDocumento.length === 8
+      : this.numeroDocumento.length >= 6 && this.numeroDocumento.length <= 20;
+  }
+
+  // Método para convertir el tipo de documento
+  getDocumentType(value: string): DocumentType {
+    switch (value) {
+      case 'DNI':
+        return DocumentType.DNI;
+      case 'Pasaporte':
+        return DocumentType.PASAPORTE;
+      case 'Carnet de extranjería':
+        return DocumentType.CARNET_EXTRANJERIA;
+      case 'PTP':
+        return DocumentType.PTP;
+      default:
+        throw new Error('Tipo de documento no válido');
+    }
   }
 }

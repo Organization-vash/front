@@ -33,7 +33,7 @@ export class CreateModuleComponent implements OnInit {
       this.module.id = this.module.number; // Asignamos el número ingresado como el ID
       const requestPayload = {
         id: this.module.id,
-        moduleStatus: 'INACTIVE', // Estado inicial siempre es INACTIVE
+        status: 'INACTIVE', // Estado inicial siempre es INACTIVE
       };
       this.guardarModule(requestPayload);
     }
